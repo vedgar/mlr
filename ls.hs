@@ -24,9 +24,6 @@ bicondc = binary (==)
 table (Conn 0 f) = [f []]
 table (Conn n f) = [b | start <- [False, True],
     b <- table (Conn (n-1) (\ rest -> f([start] ++ rest)))]
-{- table (Conn n f) = table (Conn (n-1) (partial False))
-    ++ table (Conn (n-1) (partial True)) where
-    partial prefix rest = f ([prefix] ++ rest) -}
 
 instance Eq Connective where
     c1 == c2 = table c1 == table c2
@@ -70,3 +67,13 @@ vars (Compound _ fs) = Set.unions (map vars fs)
 
 complexity (Atomic p) = 0
 complexity (Compound _ fs) = 1 + sum (map complexity fs)
+
+interp i (Atomic p) = i p
+interp i (Compound (Conn _ c) fs) = c (map (interp i) fs)
+
+{- npr. > let i at = at == At 'p' Nothing
+sad je i interpretacija koja je na p True, na svim ostalima False
+> interp i (q --> p) -}
+
+height (Atomic p) = 1
+height (Compound _ fs) = 1 + maximum (map height fs)
