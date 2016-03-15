@@ -1,0 +1,200 @@
+\chapter{Normalne forme}
+
+\section{Tablice istinitosti}
+
+Vidjeli smo da interpretaciju možemo zadati na atomima, i ona se onda prirodno proširuje na sve formule koje sadrže te atome. Zapravo, ako fiksiramo formulu $F$ i variramo interpretaciju na atomima, vidimo da smo dobili preslikavanje sa skupa $\{0,1\}^{Var(F)}$ u $\{0,1\}$. Ako standardiziramo redoslijed atoma u $F$, zapravo vidimo da smo dobili veznik.
+
+\begin{teorem}\label{tm:formcon}
+Za svaki prirodan broj $k$ i formulu $F$ takvu da je $Var(F)\subseteq\{p_1,\ldots,p_k\}$ postoji veznik $v^k_F$ mjesnosti $k$, takav da za sve interpretacije $I$ za $F$ vrijedi
+$$I(F)=v^k_F\Big(I(p_1),\ldots,I(p_k)\Big)\;.$$
+\end{teorem}
+
+\begin{proof}
+Zapravo samo treba definirati $v^k_F$ kao funkciju na svakoj $k$-torki nula i jedinica. Za proizvoljne $x_1,\ldots,x_k\in\{0,1\}$, definiramo interpretaciju $I_x$ tako da je $I_x(p_i)=x_i$ za sve $i\in\{1,\ldots,k\}$ (na ostalim atomima $I_x$ ostavimo nedefiniranom), ustanovimo da je $I_x$ interpretacija za $F$ jer je $\dom I_x=\{p_1,\ldots,p_k\}\supseteq Var(F)$, i definiramo
+$$v^k_F(x_1,\ldots,x_k):=I_x(F)\;.\mbox{\qedhere}$$
+\end{proof}
+
+\begin{definicija}\label{def:corrconn}
+Veznik $v^k_F$ iz prethodnog teorema zovemo \emph{veznik (mjesnosti $k$) koji odgovara formuli $F$}.
+Ako je $Var(F)=\{p_1,\ldots,p_k\}$, onda često umjesto $v^k_F$ pišemo samo $v_F$. Odnosno, podrazumijevana mjesnost veznika koji odgovara formuli $F$ je upravo jednaka broju različitih atoma u $F$.
+
+Veznik koji odgovara formuli možemo definirati i za formule koje sadrže druge varijable osim $p_i$. Zapravo, sve što nam treba je neki kanonski totalni uređaj na atomima. Možemo propisati da su slova uređena po abecedi, neindeksirana dolaze prije indeksiranih, a indeksirana su uređena po indeksima.
+$$\cdots\prec p\prec p_0\prec p_1\prec p_2\prec\cdots\prec q\prec q_0\prec\cdots\prec r\prec\cdots$$
+
+Graf veznika $v_F$ zovemo \emph{tablicom istinitosti} formule $F$.
+\end{definicija}
+
+Primijetimo, tablica istinitosti je skup od $2^k$ $(k+1)$-torki nad skupom $\{0,1\}$, u kojima prvih $k$ komponenti predstavlja proizvoljnu kombinaciju nula i jedinica, a zadnja komponenta odgovara vrijednosti $v_F$ na toj kombinaciji.
+
+\section{Klauzule}
+
+Na početku točke~\ref{sec:int} primijetili smo da su formule vrlo generalno definirane, i operatori mogu biti bilo kakvi. U prethodnoj točki smo to potvrdili, dokazavši da svaku formulu, ako je gledamo semantički, možemo shvatiti kao jedan operator, čija je mjesnost jednaka broju različitih atoma u formuli.
+
+Treba li nam tolika generalnost? Pokazat ćemo da (za semantiku) ne treba, štoviše postoje vrlo mali skupovi veznika takvi da svaka formula ima ekvivalentnu \emph{normalnu formu} koja se sastoji od atoma i veznika iz tog skupa. Da bismo to lakše dokazali, a i jer će nam trebati kasnije, uvodimo nekoliko pomoćnih pojmova.
+
+\begin{napomena}
+Za skup $X$, s $\mathcal P_f(X)$ označimo skup svih konačnih podskupova od $X$. Primijetimo $\mathcal P_f(X)=\mathcal P(X)$ ako i samo ako je $X$ konačan.
+\end{napomena}
+
+\begin{definicija}
+Bilo koju relaciju na $\mathcal P_f(At)$ zovemo \emph{klauzalnom formom}. Dakle, elementi klauzalne forme su uređeni parovi konačnih skupova atoma. Zovemo ih \emph{klauzulama}, i klauzulu $(\{r_1,\ldots,r_n\},\{q_1,\ldots,q_m\})$ standardno zapisujemo u obliku
+$$r_1,\ldots,r_n\leftarrow q_1,\ldots,q_m$$
+(možemo shvatiti kao da nam je $\leftarrow$ kanonsko ime za relaciju klauzalne forme, a kao i obično ispuštamo vitičaste zagrade kod konačnih skupova). Klauzalnu formu obično pišemo tako da sve njene klauzule pišemo jednu ispod druge, kao sustav, ali ako je želimo napisati kao skup, moramo klauzule staviti u zagrade (inače ne znamo koji zarez razdvaja atome u klauzuli, a koji razdvaja klauzule). Ako klauzulu pišemo s velikim slovima $A\leftarrow B$, podrazumijevamo da su $A$ i $B$ skupovi atoma, a ne atomi.
+
+Slično kao za formule, za interpretaciju $I$ kažemo da je \emph{interpretacija za} klauzulu $A\leftarrow B$ ako je definirana na čitavom skupu $Var(A\leftarrow B):=A\cup B$. Kažemo da je klauzula $A\leftarrow B$ \emph{istinita pod} interpretacijom $I$ ako je $I(r)=1$ za neki $r\in A$, ili je $I(q)=0$ za neki $q\in B$; kažemo da je \emph{lažna pod} interpretacijom $I$ ako je $I(r)=0$ za sve $r\in A$, te je $I(q)=1$ za sve $q\in B$. Primijetimo da klauzula može biti lažna samo pod interpretacijom za nju, ali istinita može biti i pod interpretacijom koja nije definirana na svim njenim atomima.
+\end{definicija}
+
+\begin{zadatak}\label{zad:singnf} Dokažite: klauzula $A\leftarrow B$ je \emph{valjana} (istinita pod praznom interpretacijom) ako i samo ako $A$ i $B$ nisu disjunktni. Ta klauzula je \emph{proturječna} ako i samo ako su $A$ i $B$ prazni. Dakle, postoji samo jedna proturječna klauzula $(\leftarrow)$: zovemo je \emph{praznom klauzulom}.
+\end{zadatak}
+
+\begin{definicija}
+Kao i za skupove formula, za klauzalnu formu kažemo da je istinita pod interpretacijom ako su sve klauzule u njoj istinite pod tom interpretacijom. \emph{Interpretacija za} klauzalnu formu je interpretacija za svaku njenu klauzulu. Primijetimo, prazna klauzalna forma (prazna relacija) je istinita pod svakom interpretacijom.
+
+Naravno, sad možemo definirati ekvivalentnost dviju klauzalnih formi, ili klauzalne forme i formule: ekvivalentne su ako imaju istu istinitost pod svakom interpretacijom za obje.
+
+Za klauzalnu formu $K:=\{(A_1\leftarrow B_1),\ldots,(A_n\leftarrow B_n)\}$ kažemo da je \emph{savršena} ako nijedna njena klauzula nije valjana ($A_i\cap B_i=\emptyset$ za sve $i$), te sve klauzule imaju isti skup atoma ($Var$). Kažemo da je klauzalna forma $K$ \emph{savršena za} formulu $F$ ako je savršena, ekvivalentna s $F$, te za svaku klauzulu $(A\leftarrow B)\in K$ vrijedi $Var(A\leftarrow B)=Var(F)$.
+\end{definicija}
+
+\begin{teorem}
+Za svaku oborivu formulu postoji savršena klauzalna forma.
+\end{teorem}
+
+\begin{proof}
+Neka je $F$ bilo koja oboriva formula. Po teoremu~\ref{tm:formcon} postoji njoj odgovarajući veznik $v_F$. Prema onom što smo rekli nakon tog teorema, bez smanjenja općenitosti možemo pretpostaviti da je $Var(F)=\{p_1,\ldots,p_k\}$.
+
+Promotrimo sada ``jezgru'' od $v_F$: skup svih $k$-torki koje $v_F$ preslikava u $0$. Za svaku takvu $k$-torku $\vec x:=(x_1,\ldots,x_k)$ konstruiramo klauzulu $A_{\vec x}\leftarrow B_{\vec x}$, gdje su
+$$A_{\vec x}:=\{p_i\in Var(F)\;:\;x_i=0\}$$
+$$B_{\vec x}:=\{p_i\in Var(F)\;:\;x_i=1\}$$
+Iz konstrukcije skupova je očito da je uvijek $A\cap B=\emptyset$, te je $A\cup B=Var(F)$. Kako je $F$ oboriva, ``jezgra'' je neprazna, pa za dokazati da je
+$$K:=\{A_{\vec x}\leftarrow B_{\vec x}\;:\;v_F(\vec x)=0\}$$
+savršena klauzalna forma za $F$, samo još treba dokazati $K\Leftrightarrow F$.
+
+Neka je $I$ interpretacija za $K$ i $F$. Ako je $I(K)=0$, tada postoji pod $I$ lažna klauzula $(A_{\vec x}\leftarrow B_{\vec x})\in K$. Dakle za sve $p_i\in A_{\vec x}$ je $I(p_i)=0$, dok je za sve $p_i\in B_{\vec x}$ pak $I(p_i)=1$. Ukratko, iz definicije skupova $A_{\vec x}$ i $B_{\vec x}$ vidimo da je $x_i=I(p_i)$ za sve $i$, te je prema teoremu~\ref{tm:formcon}
+$$I(F)=v_F(I(p_1),\ldots,I(p_k))=v_F(x_1,\ldots,x_k)=v_F(\vec x)=0$$
+(ovo zadnje jer je $(A_{\vec x}\leftarrow B_{\vec x})\in K$, po definiciji $K$).
+
+Ako je pak $I(K)=1$, trebamo dokazati da je $I(F)=1$. Pretpostavimo suprotno da je $I(F)=0$ (kako je $I$ interpretacija za $F$, doista je $I(F)$ ili $1$ ili $0$). To bi značilo da za $\vec x:=(I(p_1),\ldots,I(p_k))$ vrijedi $0=I(F)=v_F(\vec x)$, pa je $(A_{\vec x}\leftarrow B_{\vec x})\in K$.
+
+Za svaki $p_i\in A_{\vec x}$ po definiciji $A_{\vec x}$ je $I(p_i)=x_i=0$, dok je za svaki $p_i\in B_{\vec x}$ jednako tako $I(p_i)=x_i=1$. Dakle klauzula $(A_{\vec x}\leftarrow B_{\vec x})\in K$ je lažna pod interpretacijom $I$, što je kontradikcija s pretpostavkom $I(K)=1$.
+\end{proof}
+
+Što je s valjanim formulama? Vidjeli smo u zadatku~\ref{zad:singnf} da je prazna klauzalna forma valjana, i trivijalno je savršena. Ipak, to nije savršena klauzalna forma \emph{za} bilo koju valjanu formulu $F$, jer je $Var(\emptyset)=\emptyset\not=Var(F)$. Štoviše, imamo sljedeći teorem.
+
+\begin{teorem}
+Neka je $F$ valjana formula. Tada ne postoji savršena klauzalna forma za $F$.
+\end{teorem}
+
+\begin{proof}
+Pretpostavimo da je $K$ savršena klauzalna forma za $F$. Kako mora biti $K\Leftrightarrow F$, vidimo da i $K$ mora biti valjana. No budući da je $Var(F)\not=\emptyset=Var(\emptyset)$, $K$ ne smije biti prazna. Neka je $A\leftarrow B$ neka klauzula u $K$. Kako je $K$ savršena, $A\cap B=\emptyset$. Sada po zadatku~\ref{zad:singnf} slijedi da postoji interpretacija pod kojom je $A\leftarrow B$ lažna, pa je pod tom interpretacijom i $K$ lažna, što je kontradikcija s njenom valjanošću.
+\end{proof}
+
+\section{Konjunktivna normalna forma}
+
+Vidjeli smo da za svaku formulu $F$ postoji savršena klauzalna forma ekvivalentna njoj, te da ona ima iste varijable kao i $F$ ako je $F$ oboriva. Sad nam je cilj vratiti se natrag u formule, te vidjeti da klauzule i klauzalne forme također možemo prikazati pomoću veznika.
+
+Prisjetimo se, konjunkcija je definirana za svaku mjesnost $k$ kao minimum istinitosnih vrijednosti, dok je disjunkcija definirana kao maksimum. Specijalni slučajevi su:
+$$\wedge^0=\top\qquad\vee^0=\bot\qquad\wedge^1=\vee^1=id\qquad\wedge^2=\wedge\qquad\vee^2=\vee$$
+
+\begin{definicija}
+\emph{Formulska reprezentacija} klauzule $r_1,\ldots,r_n\leftarrow q_1\ldots q_m$ je formula $(q_1\wedge\cdots\wedge q_m)\to(r_1\vee\cdots\vee r_n)$. Formulska reprezentacija konačne klauzalne forme je konjunkcija formulskih reprezentacija svih njenih klauzula.
+\end{definicija}
+
+\begin{zadatak}\label{zad:clfeqfr}
+Dokažite: svaka klauzula, i svaka konačna klauzalna forma, ekvivalentna je svojoj formulskoj reprezentaciji.
+\end{zadatak}
+
+Vidimo da svaki veznik možemo zapisati koristeći samo konjunkciju, disjunkciju i kondicional: njegovu klauzalnu formu pretvorimo u formulsku reprezentaciju. Možemo se riješiti i kondicionala, ako uvedemo negaciju.
+
+\begin{zadatak}\label{zad:clfcnf}
+	Dokažite: za sve atome $q_1,\ldots,q_m,r_1,\ldots,r_n$, vrijedi
+	$$(q_1\wedge\cdots\wedge q_m)\to(r_1\vee\cdots\vee r_n)
+	\Longleftrightarrow
+	(\neg q_1\vee\cdots\vee\neg q_m\vee r_1\vee\cdots\vee r_n)\;.
+	$$
+\end{zadatak}
+
+\begin{definicija}
+	Atomarne formule i negacije atomarnih formula zovemo \emph{literalima}.
+	Dakle, svaka formulska reprezentacija klauzule jednaka je disjunkciji literala, koju još zovemo \emph{elementarnom disjunkcijom}. Sada je jasno da je svaka formulska reprezentacija konačne klauzalne forme ekvivalentna konjunkciji elementarnih disjunkcija, koju zovemo \emph{konjunktivnom normalnom formom} početne klauzalne forme.
+\end{definicija}
+
+\section{Izrazivost veznika}
+Sada ćemo se malo detaljnije pozabaviti veznicima. U definiciji formule smo samo rekli da je veznik bilo koja funkcija sa $\{0,1\}^k$ u $\{0,1\}$ za neki $k\in\mathbb N$. Preciznije, za svaki prirodni $k$ imamo skup $Conn^k:=\{0,1\}^{\{0,1\}^k}$ veznika mjesnosti $k$, dok je skup svih veznika jednak $Conn:=\bigcup_{k\in\mathbb N}Conn^k$.
+
+\begin{definicija}
+Neka je $A\subseteq Conn$. Za formulu kažemo da je $A$\emph{-formula} ako je ili atomarna, ili joj je glavni veznik element od $A$, a sve glavne potformule su joj $A$-formule. Neformalno, formula je $A$-formula ako su svi veznici koji se u njoj pojavljuju, elementi od $A$.
+	
+Za veznik $v\in Conn$ kažemo da je \emph{izraziv pomoću} $A$ ako odgovara nekoj $A$-formuli. Za \emph{skup} $B\subseteq Conn$ kažemo da je \emph{izraziv pomoću} $A$ ako je svaki veznik iz $B$ izraziv pomoću $A$. Za $A$ kažemo da je \emph{dovoljan skup veznika} ako je čitav $Conn$ izraziv pomoću $A$.
+\end{definicija}
+
+Uzevši u obzir teorem~\ref{tm:formcon}, operativno dokazujemo da je $v^k$ izraziv pomoću $A$ tako da dokažemo da je formula s glavnim veznikom $v$ i glavnim potformulama $p_1, \ldots, p_k$ ekvivalentna nekoj $A$-formuli (čiji skup atoma ne mora biti jednak $\{p_1,\ldots,p_k\})$.
+
+Rezultat iz prethodne točke sada možemo iskazati formalno: označimo
+$$Conj:=\{\wedge^0, \wedge^1, \wedge^2, \wedge^3,\wedge^4,\cdots\}\qquad Disj:=\{\vee^0, \vee^1, \vee^2,\vee^3,\vee^4,\cdots\}$$
+
+\begin{teorem}
+$Cl:=Conj\cup Disj\cup\{\to\}$ je
+dovoljan skup veznika.
+\end{teorem}
+
+\begin{proof}
+Neka je $v\in Conn$ bilo koji veznik, i označimo njegovu mjesnost s $k$. Ako $v$ nikad ne poprima vrijednost $0$, očito odgovara bilo kojoj tautologiji, recimo $p\to p$, koja je $Cl$-formula jer je $\to\,\in Cl$.
+
+Ako pak $v$ može poprimiti vrijednost $0$, to znači da je formula $F$ čiji je glavni veznik $v$ a glavne potformule su joj $p_1,\ldots,p_k$ redom, oboriva. Kako je po definiciji $v^k_F=v$, dovoljno je dokazati da je $F$ ekvivalentna nekoj $Cl$ formuli.
+
+Znamo da za $F$ postoji savršena klauzalna forma $C$. Po definiciji je dakle $F\Leftrightarrow C$. Za $C$ (koja je očito konačna, $\left|C\right|\le 2^k$) postoji formulska reprezentacija $G$, koja joj je ekvivalentna po zadatku~\ref{zad:clfeqfr}. Lako je sada vidjeti da $G$ jest $Cl$-formula, te je $G\Leftrightarrow F$.
+\end{proof}
+
+Sada bismo htjeli iskoristiti zadatak~\ref{zad:clfcnf} da dokažemo da je skup veznika $\{\neg\}\cup Cl\setminus\{\to\}$ također dovoljan. Formalno, za to nam treba sljedeći rezultat.
+
+\begin{teorem}
+	Neka su $A, B\subseteq Conn$. Tada je $B$ izraziv pomoću $A$ ako i samo ako je svaka $B$-formula ekvivalentna nekoj $A$-formuli.
+\end{teorem}
+
+\begin{proof}
+	Jedan smjer je jednostavan: ako je svaka $B$-formula ekvivalentna nekoj $A$-formuli, tada je specijalno za svaki $v^k\in B$, formula s glavnim veznikom $v^k$ i glavnim potformulama $p_1,\ldots,p_k$ ekvivalentna nekoj $A$-formuli $F$, a to upravo znači $v^k_F=v^k$.
+	
+	Drugi smjer dokazujemo indukcijom po $B$-formulama. Atomarne formule su očito ekvivalentne same sebi, i $A$-formule su. Neka je sada $F$ formula s glavnim veznikom $v^k\in B$, kojoj su sve glavne potformule (nazovimo ih $F_1,\ldots,F_k$) $B$-formule. Za njih vrijedi pretpostavka indukcije, pa je svaka od njih ekvivalentna nekoj $A$-formuli, označimo jednu takvu s $G_i:\Leftrightarrow F_i$.
+	
+	S druge strane, sam $v^k$, kao element od $B$ i po pretpostavci izraziv pomoću $A$, odgovara nekoj $A$-formuli $H$. Označimo $$G:=H[p_1\mapsto G_1,\ldots,p_k\mapsto G_k]\;.$$
+	Očito je $G$ također $A$-formula (dobivena je supstitucijom nekoliko $A$-formula u $A$-formulu). Želimo dokazati $F\Leftrightarrow G$. U tu svrhu, neka je $I_1$ interpretacija za obje. Definiramo pomoćnu interpretaciju $I_2$ sa
+	$$I_2(p_i):=I_1(G_i)\mbox{\quad za sve\quad}i\in\{1,\ldots,k\}\;.$$
+	Sada, uzimajući u obzir mnoge dosadašnje rezultate, dobivamo
+	$$I_1(F)=v^k(I_1(F_1),\ldots,I_1(F_k))=v^k(I_1(G_1),\ldots,I_1(G_k))=$$
+	$$=v^k(I_2(p_1),\ldots,I_2(p_k))=I_2(H)=I_1(H[p_1\mapsto G_1,\ldots,p_k\mapsto G_k])=I_1(G)\;.$$
+\end{proof}
+
+\begin{korolar}
+	Relacija ``je izraziv pomoću'' na skupu $\mathcal P(Conn)$ je tranzitivna.
+\end{korolar}
+
+\begin{proof}
+	Neka su $A, B, C\subseteq Conn$ takvi da je $A$ izraziv pomoću $B$, a $B$ izraziv pomoću $C$. Neka je $F$ proizvoljna $A$-formula. Po prethodnom teoremu, ona je ekvivalentna nekoj $B$-formuli $G$. Opet po prethodnom teoremu, $G$ je ekvivalentna nekoj $C$-formuli $H$. Sada vidimo da je svaka $A$-formula ekvivalentna nekoj $C$-formuli, pa po prethodnom teoremu (obrnuti smjer) vidimo da je $A$ izraziv pomoću $C$.
+\end{proof}
+
+Uvrštavanjem $A:=Conn$ u dokaz prethodnog korolara odmah dobivamo
+
+\begin{korolar}
+	Ako je dovoljan skup veznika $C$ izraziv pomoću skupa veznika $B$, tada je i $B$ dovoljan.
+\end{korolar}
+
+Budući da imamo jedan relativno strukturiran dovoljan skup ($Cl$), po\-mo\-ću njega možemo dobivati ostale. Primijetimo da za dokaz da je $A$ izraziv pomoću $B$, moramo naći odgovarajuće $B$-formule samo za veznike iz $A\setminus B$. 
+
+Konkretno, skup
+$Nf:=Conj\cup Disj\cup\{\neg\}$ je dovoljan, jer je $Cl$ izraziv pomoću njega. Jedini veznik iz $Cl\setminus Nf$ je $\to$, a on je izraziv pomoću $Nf$ jer je
+$p_1\to p_2\Leftrightarrow\neg p_1\vee p_2$ (po definiciji od $\to$).
+
+Također, skup
+$Basic:=\{\wedge, \vee, \neg\}$ je dovoljan (i prvi primjer \emph{konačnog} dovoljnog skupa koji imamo) jer je $Nf$ izraziv pomoću njega. Naime, indukcijom po $k$ lako dobijemo da je za svaki $k\ge 2$, $\wedge^k$ izraziv pomoću $Basic$ (u koraku, izrazimo ga pomoću $\wedge=\wedge^2$ i $\wedge^{k-1}$, i primijenimo tranzitivnost), i jednako tako za $\vee^k$.
+
+Još su nam ostali $\vee^1=\wedge^1=id$, što možemo riješiti primjerice pomoću $id\; p_1\Leftrightarrow(p_1\wedge p_1)$, te $\vee^0=\bot\Leftrightarrow (p\wedge\neg p)$ i $\wedge^0=\top\Leftrightarrow(p\vee\neg p)$.
+
+Sada je lako vidjeti da je
+$\{\neg,\vee\}$ dovoljan (de Morganovo pravilo nam daje $\wedge$), pa je i $\{\neg, \to\}$ dovoljan ($(p_1\vee p_2)\Leftrightarrow(\neg p_1\to p_2)$), a onda je i $\{\bot,\to\}$ dovoljan ($\neg p_1\Leftrightarrow(p_1\to\bot)$).
+
+\begin{zadatak}\begin{enumerate}
+		\item[(a)] Dokažite da skup $\{\neg,\leftrightarrow\}$ nije dovoljan.
+		\item[(b)] Dokažite da skup $Conn^0\cup Conn^1$ nije dovoljan.
+		\item[(c)] Nađite neki jednočlan dovoljan skup veznika, i dokažite da je dovoljan.
+	\end{enumerate}
+\end{zadatak}

@@ -1,0 +1,34 @@
+\chapter{Rezolucija}
+
+\section{SAT problem}
+
+U prošlom poglavlju definirali smo klauzule i klauzalne forme, i vidjeli kako se pomoću njih mogu zapisati proizvoljne formule. Svaka tautologija ekvivalentna je praznoj klauzalnoj formi, dok svaka oboriva formula ima svoju (jedinstvenu) savršenu klauzalnu formu kojoj je ekvivalentna. Dakle, klauzalne forme predstavljaju neku vrstu kanonskog oblika zapisa formule.
+
+Vidjeli smo da je klauzalna forma valjana ako i samo ako su sve njene klauzule valjane (ovo naravno uključuje i slučaj kad je prazna), a valjane je klauzule lako prepoznati: samo mora postojati atom koji se nalazi i na lijevoj i na desnoj strani.
+
+Drugim riječima, za klauzalnu formu postoji \emph{linearni} algoritam koji ustanovljuje je li valjana. Ovisno o implementaciji atoma i skupova taj algoritam može biti $O(n\log n)$ ili čak $O(n^2)$, ali u svakom slučaju je polinoman.
+
+S druge strane, \emph{ispunjivost} klauzalne forme je puno teže ispitati. To je slavni SAT (\emph{satisfiability}) problem, prvi problem za kojeg je dokazano da je \emph{NP-potpun}, odnosno da se svaki problem čije rješenje se može \emph{provjeriti} u polinomnom vremenu (skup takvih problema označavamo s $NP$) može svesti na SAT. Kako je SAT također u $NP$ (očito, ako nam netko dade interpretaciju za klauzalnu formu, izračunati joj vrijednost je lako moguće već u kvadratnom vremenu, pa ćemo lako provjeriti čini li dana interpretacija rješenje problema ispunjivosti), polinomni algoritam za SAT značio bi da je klasa $P$ problema rješivih u polinomnom vremenu, jednaka klasi $NP$. Mnogi stručnjaci za složenost u to sumnjaju, a za matematički dokaz točnog odnosa između $P$ i $NP$ Clay Institute nudi milijun dolara još od 2000. godine.
+
+Iako mnogi vjeruju da svaki algoritam za SAT problem ima puno slučajeva u kojima nema bitno boljeg rješenja od jednostavnog eksponencijalnog ispitivanja svih $2^n$ mogućnosti (gdje je $n$ broj različitih atoma koji se pojavljuju u klauzalnoj formi), ipak postoje mnoge heuristike, koje dodatno dobivaju na značenju činjenicom da se mnogi vrlo stvarni problemi (primjerice, problem rasporeda sati) mogu izraziti kao instance SAT problema.
+
+Ne sve, ali mnoge od tih heuristika zasnivaju se na \emph{rezoluciji}, jednostavnom logičkom principu koji nam omogućuje da od dvije klauzule dobijemo jednu novu, koju onda možemo koristiti dalje. Jednostavna analogija koja nam može pomoći je sljedeća: zamislimo da ispred sebe imamo puno klauzula, i moramo naći vrijednosti koje ćemo pridružiti atomima tako da sve one budu istinite. Kad ga gledamo na taj način, problem donekle podsjeća na rješavanje sustava jednadžbi: svaka može biti zadovoljena na razne načine jer ima puno nepoznanica, ali uvjet da \emph{sve} moraju biti zadovoljene bitno smanjuje broj mogućnosti.
+
+Tehnika koju obično koristimo kod rješavanja sustava algebarskih jednadžbi je \emph{supstitucija}. Njome iz para jednadžbi eliminiramo jednu nepoznanicu, tako da je izrazimo iz jedne i uvrstimo izraz za nju u onu drugu. Zapravo, često ako su jednadžbe dovoljno pravilne strukture, i ne moramo izražavati pa uvrštavati: jednostavnim agregiranjem (zbrajanjem) jednadžbi kojima se nepoznanica nalazi na suprotnim stranama, ona se reducira (po\-ni\-šta\-va) i time nestaje iz rezultatne jednadžbe.
+$$\left.\begin{array}{r@{\;=\;}l}x+\cancel{y}&a+b\\c&\cancel{y}+z\end{array}\right\}\quad\Longrightarrow\quad x + c = a + b + z$$
+Klauzule \emph{jesu} vrlo pravilne strukture, i pokazuje se da je vrlo sličan manevar moguće napraviti s njima. Pogledajmo za početak neke singularne slučajeve.
+
+Iako moramo samo odrediti je li forma ispunjiva (da/ne), za dalja raz\-miš\-lja\-nja pomoći će ako se ponašamo kao da moramo baš naći interpretaciju $I_1$ koja je čini istinitom.
+
+Prvo, očito atome koji se uopće ne pojavljuju možemo ignorirati, odnosno interpretaciju ne moramo definirati na njima. Što je s atomima koji se pojavljuju samo jednom? Lako je vidjeti da ih možemo iskoristiti kao ``džokere'': ako se pojavljuju na lijevoj strani klauzule, definiramo interpretaciju na njima kao $1$, a ako se pojavljuju na desnoj, definiramo interpretaciju na njima kao $0$. Ta klauzula time postaje zadovoljena i možemo je brisati iz klauzalne forme. Sad se lako vidi da potpuno isti pristup funkcionira i ako se određeni atom pojavljuje više puta, ali uvijek na istoj strani klauzule (uvijek na lijevoj, ili uvijek na desnoj).
+
+Idemo dalje. Što ako se neki atom pojavljuje dvaput, na različitim stranama klauzule? Ako se pojavljuje na različitim stranama \emph{iste} klauzule, tad znamo da je ta klauzula tautologija, pa je uvijek zadovoljena i možemo je brisati. Što ako se pojavljuje na različitim stranama dviju različitih klauzula?
+
+Takve klauzule zovemo \emph{ulančanima}. Precizno, klauzule $A\leftarrow B$ i $C\leftarrow D$ su ulančane ako je $(A\cap D)\cup(B\cap C)\not=\emptyset$. Odaberimo jedan element tog presjeka, neka je to $q$. (Poslije ćemo vidjeti da je zapravo jedini zanimljiv slučaj kad je $q$ jedinstven.) Bez smanjenja općenitosti (inače zamijenimo klauzule), $q\in A\cap D$. Vrijednost $I_1(q)$ je ili $0$ ili $1$. Ako je $0$, klauzula $C\leftarrow D$ je istinita (jer je $q\in D$), i trebamo samo gledati $A\setminus\{q\}\leftarrow B$. Ako je pak $1$, klauzula $A\leftarrow B$ je istinita (jer je $q\in A$), i trebamo samo gledati $C\leftarrow D\setminus\{q\}$.
+
+Dakle, ako je $I_1$ rješenje, tada je ili neki atom iz $A\setminus\{q\}$ istinit, ili je neki atom iz $B$ lažan, ili je neki atom iz $C$ istinit, ili je neki atom iz $D\setminus\{q\}$ lažan. Pišući to drugim redom (grupirajući posebno istinite a posebno lažne mogućnosti), dobivamo da je pod $I_1$ istinita klauzula $$(A\setminus\{q\})\cup C\leftarrow B\cup(D\setminus\{q\})\;,$$
+koju zovemo \emph{rezolventom} klauzula $A\leftarrow B$ i $C\leftarrow D$, i označavamo je oznakom $(C\leftarrow D)\;\cancel{q}\;(A\leftarrow B)$. Proces kojim je ta klauzula dobivena od početnih zovemo \emph{rezolucijom}.
+
+Vidjeli smo da ako su dvije klauzule ulančane i istinite pod nekom interpretacijom, tada je pod istom interpretacijom istinita i njihova rezolventa s obzirom na neki atom po kojem su ulančane. Što ako ima više takvih atoma? Lako je vidjeti da ako su različiti atomi $q$ i $r$ svaki na različitim stranama dvije klauzule, tada ako napravimo rezoluciju po $q$, rezolventa će imati $r$ na obje strane, i jednako tako ako napravimo rezoluciju po $r$, rezolventa će imati $q$ na obje strane. U svakom slučaju rezolventa će biti tautologija, pa je možemo brisati iz klauzalne forme. Iz tog razloga rezolventa se obično gleda samo kad imamo jedinstveni atom na suprotnim stranama dvije različite klauzule.
+
+Opet, jasno je da se postupak može provesti i ako se $q$ javlja na više od dva mjesta, u ostalim klauzulama. Tada nismo eliminirali nepoznanicu u potpunosti, ali smo svejedno napravili korak prema pojednostavljenju.

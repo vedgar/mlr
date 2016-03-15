@@ -1,0 +1,32 @@
+\documentclass[12pt,openany]{book}
+\usepackage[croatian]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsopn}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{parskip}
+\usepackage{cancel}
+\setlength{\parindent}{2em}
+\title{Matematička logika u računarstvu}
+\author{Vedran Čačić}
+\DeclareMathOperator{\dom}{Dom}
+
+\newtheoremstyle{vekystyle}
+{\parskip}{\parskip}
+{}{\parindent}{\bfseries}
+{.}{.5em}{}
+\theoremstyle{vekystyle} \newtheorem{napomena}{Napomena}
+\newtheorem{definicija}{Definicija}
+\newtheorem{zadatak}{Zadatak}
+\newtheorem{teorem}{Teorem}
+\newtheorem{korolar}{Korolar}
+\begin{document}
+
+\tableofcontents
+\input{Logika_sudova}
+\input{Normalne_forme}
+\input{Rezolucija}
+
+\end{document}

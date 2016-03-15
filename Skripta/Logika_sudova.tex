@@ -1,0 +1,178 @@
+\chapter{Logika sudova - osnovni pojmovi}
+
+\section{Simboli i formule}
+
+Logika sudova, ili propozicijska logika, često predstavlja objekt prvog susreta s matematičkom logikom. Bez sumnje ste se već sreli s njome na studiju. Ovdje ćemo samo malo bolje formalizirati neke definicije. To neće samo služiti preciznom uvođenju pojmova za logiku sudova, već će pokazati put kako se odgovarajući pojmovi mogu formalno uvesti u kompliciranijim logikama.
+
+\begin{napomena}Nulu smatramo prirodnim brojem!
+\end{napomena}
+
+\begin{definicija}
+\emph{Simboli} logike sudova su atomi i veznici, te pomoćni simboli (zagrade).
+
+\emph{Atomi} su elementi nekog fiksiranog beskonačnog (bez velikog smanjenja op\-će\-ni\-tos\-ti možemo pretpostaviti: prebrojivog) skupa $At$. Atome najčešće označavamo malim slovima (obično se koriste $p$, $q$ ili $r$), eventualno indeksiranim prirodnim brojem (poput $p_0$, $q_5$ ili $r_{152}$).
+
+\emph{Veznici} su funkcije čija kodomena je $\{0,1\}$, a domena je $\{0,1\}^k$, za neki prirodni broj $k$ (\emph{mjesnost} veznika). Veznike mjesnosti $2$ zovemo \emph{binarnima}, mjesnosti $1$ \emph{unarnima}, a mjesnosti $0$ \emph{logičkim konstantama}.
+\end{definicija}
+
+\begin{zadatak}
+Koliko ima logičkih konstanti, koliko unarnih, a koliko binarnih veznika? Koji su to? Koliko ima veznika mjesnosti $k$?
+\end{zadatak}
+
+\begin{definicija}
+\underline{Formula} je (konačno) uređeno stablo, definirano induktivno. Formula je jednog od dva tipa:
+\begin{itemize}
+\item list označen atomom (\emph{atomarna} formula)
+\item čvor označen veznikom (\emph{glavni} veznik) mjesnosti $k$, s $k$ djece koja su korijeni formula (\emph{glavne potformule}).
+\end{itemize}
+Skup svih formula označavamo s $Fo$.
+\end{definicija}
+
+Kako su čvorovi označenim logičkim konstantama također listovi, često se i logičke konstante smatraju atomarnim formulama, iako strogo formalno one to nisu.
+
+Direktna posljedica definicije je dokazivanje \emph{indukcijom po izgradnji formule}: ako sve atomarne formule imaju svojstvo $P$, i svaka neatomarna formula čije sve glavne potformule imaju svojstvo $P$ također ima svojstvo $P$, tada sve formule imaju svojstvo $P$.
+
+Također možemo rekurzivno definirati funkcije s domenom $Fo\,$: ako imamo skup $S$ i funkciju $f_{At}:At\to S$, te za svaki veznik $t$ mjesnosti $k$ imamo funkciju $f_t:S^k\to S$, tada postoji jedinstvena funkcija $f:Fo\to S$ koja atomarnu formulu s jedinim atomom $p$ preslikava u $f_{At}(p)$, a formulu s glavnim veznikom $t$ i glavnim potformulama $F_1\ldots,F_k$ preslikava u $f_t(f(F_1),\ldots,f(F_k))$.
+
+Čest specijalni slučaj pojavljuje se kad je $S=Fo$ (definiramo transformaciju formula), te $f_t$ bude upravo konstrukcija formule s glavnim veznikom $t$ (i glavnim potformulama koje su argumenti od $f_t$). U tom slučaju samo trebamo definirati $f_{At}$, i kažemo da $f$ \emph{komutira s veznicima}.
+
+\begin{zadatak}\label{zad:var}
+Rekurzivno definirajte funkciju $Var:Fo\to\mathcal P(At)$, koja svakoj formuli pridružuje skup svih atoma koji se u njoj pojavljuju.
+\end{zadatak}
+
+Evo jednog malo složenijeg primjera takve rekurzivne definicije. Formalno, to nije dobar primjer, jer nije definiran na svim formulama, ali skup formula na kojima je definiran je također moguće induktivno definirati.
+
+\section{Nizovna reprezentacija}
+
+Ako su svi veznici u formuli mjesnosti najviše $2$, svakoj formuli možemo pridružiti njenu \emph{nizovnu reprezentaciju}, koja je konačni niz simbola, na sljedeći način:
+\begin{itemize}
+\item nizovna reprezentacija lista je niz čiji jedini element je oznaka tog lista (atom ili logička konstanta)
+\item nizovna reprezentacija formule s unarnim glavnim veznikom je niz\newline $x_0x_1\ldots x_k$, gdje je $x_0$ glavni veznik, a $x_1\ldots x_k$ nizovna reprezentacija jedine njene glavne potformule
+\item nizovna reprezentacija formule s binarnim glavnim veznikom je niz $x_0x_1\ldots x_k$, gdje je $x_0$ otvorena zagrada, $x_k$ zatvorena zagrada, te postoji $l\in\{1,\ldots,k-1\}$ takav da je $x_l$ glavni veznik formule, $x_1\ldots x_{l-1}$ nizovna reprezentacija njene prve glavne potformule, a\newline $x_{l+1}x_{l+2}\ldots x_{k-1}$ nizovna reprezentacija njene druge glavne potformule.
+\end{itemize}
+
+Ukratko, formulu obilazimo \textsc{inorder} obilaskom, i stavimo zagrade slijeva i zdesna, ako joj je glavni veznik mjesnosti $2$, a \textsc{preorder} obilaskom inače.
+
+U računalnoj interpretaciji, imena za simbole su najčešće Unicode znakovi (ako zanemarimo indeksirana imena), te nizovnu reprezentaciju možemo jednostavno smatrati stringom.
+
+\begin{zadatak}
+Dokažite da je nizovna reprezentacija, kao preslikavanje sa $Fo$ u skup svih stringova, injekcija. Navedite kontraprimjer koji pokazuje da je stavljanje inorder obilaska u zagrade nužno za injektivnost.
+\end{zadatak}
+
+Prethodni zadatak pokazuje da je moguće \emph{parsiranje} nizovnih reprezentacija, odnosno \emph{serijalizacija} formula u njihove nizovne reprezentacije ne gubi informaciju. Serijalizacija je postupak kojim se komplicirani objekti pretvaraju u nizove znakova (zapravo bitova, ali to je riješeno UTF-8 standardom), radi ispisa na ekran, zapisa u datoteku, ili slanja preko mreže. Parsiranje je postupak kojim iz stringa konstruiramo objekt.
+
+\begin{zadatak}
+Parsirajte string "$\neg((p\to q)\wedge p)$", odnosno nacrtajte stablo kojem je to nizovna reprezentacija.
+\end{zadatak}
+
+Zahvaljujući mogućnosti parsiranja, možemo navoditi samo nizovne reprezentacije, i znat će se na koje formule mislimo. Ubuduće ćemo dakle samo govoriti stvari poput ``formula $\neg((p\to q)\wedge p)$'', misleći pritom na stablo koje je rezultat parsiranja tog stringa. Također, ako je glavni veznik formule binarni, često nećemo pisati vanjske zagrade kad ne postoji opasnost od zabune (``formula $p\vee q$'' nam zapravo znači ``formula $(p\vee q)$'').
+
+\begin{zadatak}
+Očito, algoritam za parsiranje mora razlikovati zagrade od ostalih simbola (inače bi mogao formulu "$(p\wedge q)$" parsirati kao da su '$($', '$p$', '$\wedge$' i '$q$' unarni veznici, a '$)$' atom). Ali ako nas zanima samo oblik stabla koje se dobije, je li to jedino što mora razlikovati? Odnosno, može li se broj djece svakog čvora rekonstruirati samo iz položaja njegove oznake u nizovnoj reprezentaciji u odnosu na zagrade i na ostale simbole?
+\end{zadatak}
+
+Evo nekoliko često korištenih veznika, s njihovim uobičajenim oznakama.
+
+\begin{itemize}
+\item[$\neg$] (negacija): $\neg(x):=1-x$ (unarni veznik)
+\item[$\wedge^k$] (konjunkcija): $\wedge^k(x_1,\ldots x_k):=\min\{x_1,\ldots,x_k\}$.\\ Umjesto $\wedge^2$ (binarni veznik) često pišemo samo $\wedge$. Primijetimo $\wedge^1=id$.\\
+Ima smisla samo kad je $k\ge 1$. Ponekad se definira $\wedge^0:=\top$.
+\item[$\vee^k$] (disjunkcija): $\vee^k(x_1,\ldots,x_k):=\max\{x_1,\ldots,x_k\}$.\\ Umjesto $\vee^2$ (binarni veznik) često pišemo samo $\vee$. Primijetimo $\vee^1=id$.\\
+Ima smisla samo kad je $k\ge 1$. Ponekad se definira $\vee^0:=\bot$.
+\item[$\to$] (kondicional): $\to(x,y):=\max\{1-x,y\}$ (binarni veznik)
+\item[$\leftrightarrow$] (bikondicional): $\leftrightarrow(x,y):=\delta_{xy}$ (Kroneckerov simbol) (binarni veznik)
+\item[$\bot$] (laž): $\bot():=0$ (logička konstanta)
+\item[$\top$] (istina): $\top():=1$ (logička konstanta)
+\end{itemize}
+
+U nekim slučajevima možemo bez opasnosti od zabune proširiti našu definiciju nizovne reprezentacije i na formule koje sadrže veznike mjesnosti veće od $2$. Konkretno, disjunkciju odnosno konjunkciju od $k$ formula pišemo jednostavno kao $(F_1\vee\cdots\vee F_k)$, odnosno $(F_1\wedge\cdots\wedge F_k)$. Primijetimo da nema unutarnjih zagrada --- ovo nije iterirana binarna konjunkcija odnosno disjunkcija (iako joj je dakako ekvivalentna). Svih $k$ formula su na istoj dubini $1$ u stablu, a glavni veznik, iako se pojavljuje na $k-1$ mjesta u nizovnoj reprezentaciji, u samoj formuli pojavljuje se samo jednom: u korijenu.
+
+\section{Interpretacije}\label{sec:int}
+
+Imati mnogo veznika je dobro za izražajnost logike, ali često kod dokazivanja indukcijom po izgradnji formule moramo promotriti svaki veznik posebno: dakle, za dokazivanje općenitih teorema nam je dobro imati što manje veznika. Neki veznici se mogu izraziti preko nekih drugih, ali da bismo to formalno definirali, treba nam pojam interpretacije.
+
+\begin{definicija}
+Neka je $F$ formula. \emph{Interpretacija za} $F$ je bilo koje preslikavanje $I:T\to\{0,1\}$, gdje je $Var(F)\subseteq T\subseteq At$. Ako je $I$ neka interpretacija za $F$, \emph{vrijednost} od $F$ \emph{pod} interpretacijom $I$ je broj $I(F)$, definiran na sljedeći način:
+\begin{itemize}
+\item Vrijednost atomarne formule pod $I$ je vrijednost preslikavanja $I$ na njenom jedinom atomu (na taj način nema opasnosti od zabune pri korištenju oznake $I(p)$).
+\item Vrijednost formule s glavnim veznikom $t$ mjesnosti $k$ pod interpretacijom $I$ jednaka je $t(I(F_1),\ldots,I(F_k))$, gdje su $F_1,\ldots,F_k$ njene glavne potformule redom.
+\end{itemize}
+
+Primijetimo da se to može shvatiti kao rekurzivna definicija: $I_{At}=I$ (početno zadana), a $I_t=t$ za svaki veznik $t$.
+
+Kažemo da je formula $F$ \emph{lažna} pod interpretacijom $I$ ako je $I(F)=0$, a da je \emph{istinita} pod $I$ ako je $I(F)=1$.
+
+\emph{Parcijalna interpretacija} je bilo koja parcijalna funkcija $I':At\rightharpoonup\{0,1\}$ (dakle, funkcija čija domena je neki podskup od $At$). Ako je $S$ neki skup formula, \emph{skup vrijednosti} od $S$ pod parcijalnom interpretacijom $I'$ je skup $$I'[S]:=\Big\{I(F)\;:\;F\in S\;\&\;\mbox{$I$ je interpretacija za $F \;\&\; I$ proširuje $I'$}\Big\}\;.$$
+Kažemo da je skup formula $S$ \emph{lažan} pod parcijalnom interpretacijom $I'$ ako je $I'[S]=\{0\}$, a da je \emph{istinit} ako je $I'[S]$ ili $\{1\}$ ili $\emptyset$ (primijetimo, prazan skup je istinit pod svakom interpretacijom). Kažemo da je formula $F$ lažna/istinita pod $I'$ ako je jednočlan skup $\{F\}$ lažan/istinit pod $I'$.
+\end{definicija}
+
+Primijetimo da je formula uvijek istinita ili lažna pod interpretacijom za nju, ali može biti ni istinita ni lažna pod parcijalnom interpretacijom.
+
+Funkcije sa čitavog skupa $At$ u $\{0,1\}$ (i samo one) su interpretacije za svaku formulu: njih jednostavno zovemo \emph{interpretacijama}. Ako želimo istaći da su definirane na čitavom $At$, zovemo ih \emph{totalnim} interpretacijama.
+
+Prazan skup $\emptyset$ je parcijalna funkcija iz $At$ u $\{0,1\}$ (s praznom domenom): zovemo je \emph{prazna interpretacija}.
+
+\begin{definicija}
+Neka je $F$ formula. Kažemo da je $F$ \emph{valjana} ako je istinita pod praznom interpretacijom, a da je \emph{proturječna} ako je lažna pod praznom interpretacijom. Valjane formule još zovemo \emph{tautologijama}, a proturječne \emph{antitautologijama}. Kažemo da je $F$ \emph{ispunjiva} ako nije proturječna, a da je \emph{oboriva} ako nije valjana.
+
+Neka je $S$ skup formula. Kažemo da je $S$ \emph{ispunjiv} ako postoji interpretacija pod kojom je $S$ istinit, a da je \emph{oboriv} ako postoji interpretacija pod kojom je lažan.
+\end{definicija}
+
+\begin{zadatak}
+Dokažite alternativnu definiciju: Za formulu $F$:
+\begin{itemize}
+\item $F$ je valjana ako i samo ako je istinita pod svakom interpretacijom.
+\item $F$ je proturječna ako i samo ako je lažna pod svakom interpretacijom.
+\item $F$ je ispunjiva ako i samo ako je istinita pod nekom interpretacijom.
+\item $F$ je oboriva ako i samo ako je lažna pod nekom interpretacijom.
+\end{itemize}
+\end{zadatak}
+
+\section{Ekvivalencija i supstitucija}
+
+\begin{definicija}
+Za formule $F$ i $G$ kažemo da su \emph{ekvivalentne}, i pišemo $F\Leftrightarrow G$, ako imaju istu vrijednost pod svakom interpretacijom za obje formule.
+
+Za skup $S$ i formulu $F$ kažemo da $F$ \emph{logički slijedi} iz $S$, i pišemo $S\models F$, ako je $F$ istinita pod svakom interpretacijom pod kojom je $S$ istinit. Ako je $S$ konačan skup, često ispuštamo vitičaste zagrade: pišemo $F_1,\ldots,F_m\models F$ umjesto $\{F_1,\ldots,F_m\}\models F$.
+\end{definicija}
+
+Primijetimo da $\emptyset\models F$ vrijedi točno za valjane $F$: dakle, s $\models F$ možemo označavati da je $F$ valjana.
+
+\begin{zadatak}
+Dokažite da su sljedeće tvrdnje ekvivalentne sa $F\Leftrightarrow G$:
+\begin{itemize}
+\item Za svaku interpretaciju $I$ koja je istovremeno interpretacija za $F$ i za $G$, $F$ je istinita pod $I$ ako i samo ako je $G$ istinita pod $I$
+\item $F\leftrightarrow G$ je tautologija
+\item $F\models G$ i $G\models F$
+\end{itemize}
+Također, dokažite da su sljedeće tvrdnje ekvivalentne sa $F_1\ldots,F_m\models G$:
+\begin{itemize}
+\item $(F_1\wedge\cdots\wedge F_m)\to G$ je tautologija
+\item $F_1\to(\cdots(F_m\to G)\cdots)$ je tautologija
+\item skup $\{F_1,\ldots,F_m,\neg G\}$ nije ispunjiv
+\end{itemize}
+\end{zadatak}
+
+Osnovno svojstvo ekvivalentnih formula je supstitutabilnost (zamjenjivost): ako je $F\Leftrightarrow G$, tad u bilo kojoj formuli $H$ u kojoj se pojavljuje potformula $F$, zamjenom te pojave $F$ za $G$ dobivamo formulu ekvivalentnu s $H$. Da bismo to formalno definirali, treba nam pojam supstitucije (zamjene).
+
+\begin{definicija}
+Neka je $s:At\rightharpoonup Fo$ parcijalna funkcija. Definiramo \emph{zamjenu po} $s$ kao preslikavanje $[s]$ na formulama, induktivno.
+\begin{itemize}
+\item $p\,[s] := s(p)$, ako je $p\in\dom(s)$
+\item $q\,[s] := q$, ako je $q\in At\setminus\dom(s)$
+\item $[s]$ komutira s veznicima.
+\end{itemize}
+Ako je $s$ konačna parcijalna funkcija, često ispuštamo vitičaste zagrade: pišemo $G\,[p_1\mapsto F_1,\ldots, p_m\mapsto F_m]$ umjesto $G\,[\{p_1\mapsto F_1, \ldots, p_m\mapsto F_m\}]$.
+\end{definicija}
+
+\begin{teorem}
+Neka su $F$, $G$ i $H$ formule, te $p$ atom. Ako je $F\Leftrightarrow G$, tada je i $H\,[p\mapsto F]\Leftrightarrow H\,[p\mapsto G]$.
+\end{teorem}
+
+\begin{proof}
+Indukcijom po izgradnji formule $H$. Ako je $H$ atomarna, imamo dva slučaja: ako je njen atom $p$, tvrdnja postaje $F\Leftrightarrow G$, što imamo po pretpostavci. Ako je pak njen atom neki drugi $q$, tvrdnja postaje $q\Leftrightarrow q$, što je očito.
+
+Ako $H$ ima glavni veznik $t$ mjesnosti $k$ i glavne potformule $H_1,\ldots H_k$, za koje vrijedi pretpostavka indukcije, tada za svaku interpretaciju $I$ za $H\,[p\mapsto F]$ i $H\,[p\mapsto G]$, vrijedi
+$$I(H\,[p\mapsto F])=t\Big(I(H_1\,[p\mapsto F]),\ldots,I(H_k\,[p\mapsto F])\Big)=$$\vskip-12mm
+$$=t\Big(I(H_1\,[p\mapsto G]),\ldots,I(H_k\,[p\mapsto G])\Big)=I(H\,[p\mapsto G])\;.\mbox{\qedhere}$$
+\end{proof}
