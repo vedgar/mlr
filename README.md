@@ -29,4 +29,4 @@ Dvije velike računarske cjeline koje će biti obrađene su softverske implement
 
 ## Literatura
 
-Skripta polagano nastaje, zadnju verziju možete vidjeti u repozitoriju. Svi komentari na sadržaj i način prezentacije su dobrodošli. Literatura po kojoj zasad radimo je uglavnom Mordechai Ben-Ari, Mathematical Logic for Computer Science.
+Skripta polagano nastaje, [zadnju verziju](https://github.com/vedgar/mlr/blob/master/Skripta/main.pdf) možete vidjeti u repozitoriju. Svi komentari na sadržaj i način prezentacije su dobrodošli. Literatura po kojoj zasad radimo je uglavnom Mordechai Ben-Ari, Mathematical Logic for Computer Science.
