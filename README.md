@@ -2,9 +2,13 @@
 
 ## O kolegiju
 
-Kolegij se održava u ljetnom semestru, za studente diplomskog studija matematike i računarstva. Termin održavanja je ponedjeljkom od 9 do 12 sati, u Praktikumu 3. Nakon predavanja (pola sata do sat, prema potrebi) su konzultacije - slobodno pitajte što god nije bilo jasno s predavanja.
+Kolegij se održava u ljetnom semestru, za studente diplomskog studija matematike i računarstva.
+Termin održavanja je ponedjeljkom od 9 do 12 sati, u Praktikumu 3.
+Nakon predavanja (pola sata do sat, prema potrebi) su konzultacije - slobodno pitajte što god nije bilo jasno s predavanja.
 
-Dvije velike računarske cjeline koje će biti obrađene su softverske implementacije raznih logičkih koncepata (za sada Haskell, u budućnosti ćemo vidjeti), i logičko programiranje (Prolog). Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
+Dvije velike računarske cjeline koje će biti obrađene su softverske implementacije raznih logičkih koncepata
+(za sada Haskell, u budućnosti ćemo vidjeti), i logičko programiranje (Prolog).
+Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 
 ## Bodovanje
 
@@ -12,19 +16,22 @@ Dvije velike računarske cjeline koje će biti obrađene su softverske implement
 * Seminar (35 bodova -- 10 na sâmo izlaganje, 10 na matematičku stranu, 15 na programsku stranu)
 * Zadaće (3 zadaće po 5 bodova -- vjerojatno 5 zadataka po 1 bod)
 
+## Prijedlozi tema za seminare (javite se ako imate neki prijedlog)
+
+* DPLL algoritam i primjene
+
 ## Studenti (Ako niste na popisu, javite se mailom):
 
 * Martina Alilović
 * Tin Babić
 * Gregor Boris Banušić
-* Domagoj Beti
+* Domagoj Beti (Seminar: semantička stabla za logiku sudova)
 * Vitomir Čanadi
-* Tomislav Horina
 * Luka Horvat
 * Edita Kulović
 * Tomislav Levanić
 * Martina Lučan
-* Ivan Posavčević
+* Ivan Posavčević (Seminar: parsiranje nizovne reprezentacije formule)
 * Vedran Rukavina
 
 ## Literatura
