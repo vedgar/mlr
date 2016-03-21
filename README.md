@@ -18,7 +18,7 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 
 ## Prijedlozi tema za seminare (javite se ako imate neki prijedlog)
 
-* DPLL algoritam i primjene
+* DPLL algoritam i primjene [Koristan članak](http://arxiv.org/pdf/1502.02131v2.pdf)
 
 ## Studenti (Ako niste na popisu, javite se mailom):
 
