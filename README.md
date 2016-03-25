@@ -1,5 +1,9 @@
 ﻿# Matematička logika u računarstvu
 
+### Obavijest!
+
+Odrada Uskrsnog ponedjeljka bit će u petak, 1. travnja 2016. od 14 do 17 sati. Predavaonica će biti naknadno objavljena.
+
 ## O kolegiju
 
 Kolegij se održava u ljetnom semestru, za studente diplomskog studija matematike i računarstva.
@@ -16,22 +20,18 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 * Seminar (35 bodova -- 10 na sâmo izlaganje, 10 na matematičku stranu, 15 na programsku stranu)
 * Zadaće (3 zadaće po 5 bodova -- vjerojatno 5 zadataka po 1 bod)
 
-## Prijedlozi tema za seminare (javite se ako imate neki prijedlog)
-
-* DPLL algoritam i primjene [Koristan članak](http://arxiv.org/pdf/1502.02131v2.pdf)
-
 ## Studenti (Ako niste na popisu, javite se mailom):
 
 * Martina Alilović
 * Tin Babić
-* Gregor Boris Banušić
-* Domagoj Beti (Seminar: semantička stabla za logiku sudova)
+* Gregor Boris Banušić (Seminar: DPLL algoritam)
+* Domagoj Beti (Seminar: semantička stabla za logiku sudova; 18 bodova)
 * Vitomir Čanadi
 * Luka Horvat
 * Edita Kulović
 * Tomislav Levanić
 * Martina Lučan
-* Ivan Posavčević (Seminar: parsiranje nizovne reprezentacije formule)
+* Ivan Posavčević (Seminar: parsiranje nizovne reprezentacije formule; 30 bodova)
 * Vedran Rukavina
 
 ## Literatura
