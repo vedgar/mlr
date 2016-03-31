@@ -2,7 +2,7 @@
 
 ### Obavijest!
 
-Odrada Uskrsnog ponedjeljka bit će u petak, 1. travnja 2016. od 14 do 17 sati. Predavaonica će biti naknadno objavljena.
+Odrada Uskrsnog ponedjeljka bit će u petak, 1. travnja 2016. od 14 do 17 sati u Praktikumu 5.
 
 ## O kolegiju
 
