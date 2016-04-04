@@ -1,5 +1,9 @@
 # Matematička logika u računarstvu
 
+### Obavijest
+
+Prvi praktični kolokvij iz MLRa (Haskell) bit će u terminu prvog kolokvija, u kolokvijskom razredu B2 (20. travnja od 12 do 15 sati).
+
 ## O kolegiju
 
 Kolegij se održava u ljetnom semestru, za studente diplomskog studija matematike i računarstva.
