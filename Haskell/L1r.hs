@@ -111,7 +111,7 @@ p2 = Atomic . Related (RelS 'p' (Just 2))
 fa (Single v) = Quantified Universal v
 ex (Single v) = Quantified Existential v
 fi1 = fa x (p[x] --> q[x]) --> (fa x (p[x]) --> fa x (q[x]))
-fi2 = fa x (p[x] & q[x]) <-> (fa x (p[x]) & fa x (q[x]))
+fi2 = fa x (p[x] & q[x]) <-> (fa x2 (p[x2]) & fa x1 (q[x1]))
 
 free' (Single v) = singleton v
 free' (Application _ ts) = unions (map free' ts)
@@ -122,3 +122,57 @@ qdepth (Atomic _) = 0
 qdepth (Compound _ []) = 0
 qdepth (Compound _ fs) = maximum (map qdepth fs)
 qdepth (Quantified _ _ f) = 1 + qdepth f
+
+{- renameVar None v2 : replace first bound you find with v2
+   renameVar (Just v1) v2 : found v1, replacing it with v2 -}
+{- renameVar :: Maybe Variable -> Variable -> Formula -> Formula
+renameVar Nothing v (Atomic a) = a
+renameVar Nothing v (Compound c fs) = Compound c
+    (map (renameVar Nothing v) -}
+
+natMax [] = -1
+natMax xs = maximum xs
+maxIndex'' (Var _ Nothing) = -1
+maxIndex'' (Var _ (Just n)) = n
+maxIndex' (Single v) = maxIndex'' v
+maxIndex' (Application _ ts) = natMax (map maxIndex' ts)
+maxIndex (Atomic (Related _ ts)) = natMax (map maxIndex' ts)
+maxIndex (Compound _ fs) = natMax (map maxIndex fs)
+maxIndex (Quantified _ v f) = max (maxIndex'' v) (maxIndex f)
+
+{- replaceFirst p f l :
+    replaces first element x of l satisfying p x with f x -}
+replaceFirst p f [] = []
+replaceFirst p f (x:xs) | p x = f x : xs
+                        | otherwise = x : replaceFirst p f xs
+
+renameVar' v1 v2 (Single v3) | v3 == v1 = Single v2
+                             | otherwise = Single v3
+renameVar' v1 v2 (Application f ts) =
+    Application f (map (renameVar' v1 v2) ts)
+renameVar v1 v2 (Atomic (Related r ts)) =
+    Atomic (Related r (map (renameVar' v1 v2) ts))
+renameVar v1 v2 (Compound c fs) =
+    Compound c (map (renameVar v1 v2) fs)
+renameVar v1 v2 (Quantified q v f)
+    | v == v1 = Quantified q v f
+    | otherwise = Quantified q v (renameVar v1 v2 f)
+
+containsBelow' n (Single v) = maxIndex'' v <= n
+containsBelow' n (Application f ts) = any (containsBelow' n) ts
+renameBelow' n v2 (Single v3) | maxIndex'' v3 <= n = Single v2
+                              | otherwise = Single v3
+renameBelow' n v2 (Application f ts) =
+    Application f (replaceFirst (containsBelow' n) (renameBelow' n v2) ts)
+
+containsBelow n (Atomic (Related _ ts)) = any (containsBelow' n) ts
+containsBelow n (Compound c fs) = any (containsBelow n) fs
+containsBelow n (Quantified q v f) = maxIndex'' v <= n || containsBelow n f
+renameBelow n v2 (Atomic (Related r ts)) =
+    Atomic (Related r
+        (replaceFirst (containsBelow' n) (renameBelow' n v2) ts))
+renameBelow n v2 (Compound c fs) =
+    Compound c (replaceFirst (containsBelow n) (renameBelow n v2) fs)
+renameBelow n v2 (Quantified q v f)
+    | maxIndex'' v <= n = Quantified q v2 (renameVar v v2 f)
+    | otherwise = Quantified q v (renameBelow n v2 f)
