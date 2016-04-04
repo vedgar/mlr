@@ -1,8 +1,4 @@
-﻿# Matematička logika u računarstvu
-
-### Obavijest!
-
-Odrada Uskrsnog ponedjeljka bit će u petak, 1. travnja 2016. od 14 do 17 sati u Praktikumu 5.
+# Matematička logika u računarstvu
 
 ## O kolegiju
 
@@ -16,9 +12,9 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 
 ## Bodovanje
 
-* Praktični kolokviji (2 kolokvija, Haskell i Prolog, po 20 bodova -- vjerojatno 5 zadataka po 4 boda)
-* Seminar (35 bodova -- 10 na sâmo izlaganje, 10 na matematičku stranu, 15 na programsku stranu)
-* Zadaće (3 zadaće po 5 bodova -- vjerojatno 5 zadataka po 1 bod)
+* Praktični kolokviji (2 kolokvija, Haskell i Prolog, po 25 bodova -- 5 zadataka po 5 bodova)
+* Seminar (35 bodova -- 10 za sâmo izlaganje, 10 za matematičku stranu, 15 za programsku stranu)
+* Zadaće (3 zadaće po 5 bodova -- 5 zadataka po 1 bod)
 
 ## Studenti (Ako niste na popisu, javite se mailom):
 
