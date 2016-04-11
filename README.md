@@ -24,10 +24,10 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 
 * Martina Alilović
 * Tin Babić
-* Gregor Boris Banušić (Seminar: DPLL algoritam)
+* Gregor Boris Banušić (Seminar: DPLL algoritam; 26 bodova)
 * Domagoj Beti (Seminar: semantička stabla za logiku sudova; 18 bodova)
-* Vitomir Čanadi
-* Luka Horvat
+* Vitomir Čanadi (Seminar: Monade u Haskellu; 24 boda + ... alpha-renaming)
+* Luka Horvat (Seminar: Parsiranje formula 1. reda; 27 bodova + ... parsing _naših_ formula iz L1r.hs)
 * Edita Kulović
 * Tomislav Levanić
 * Martina Lučan
