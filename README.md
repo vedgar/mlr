@@ -2,7 +2,8 @@
 
 ### Obavijest
 
-Prvi praktični kolokvij iz MLRa (Haskell) bit će u terminu prvog kolokvija, u kolokvijskom razredu B2 (20. travnja od 12 do 15 sati).
+Prvi praktični kolokvij iz MLRa (Haskell) bit će u kolokvijskom razredu B2 (20. travnja od 12 do 15 sati).
+Rezultati će biti 2. svibnja u 12 sati.
 
 ## O kolegiju
 
@@ -10,7 +11,7 @@ Kolegij se održava u ljetnom semestru, za studente diplomskog studija matematik
 Termin održavanja je ponedjeljkom od 9 do 12 sati, u Praktikumu 3.
 Nakon predavanja (pola sata do sat, prema potrebi) su konzultacije - slobodno pitajte što god nije bilo jasno s predavanja.
 
-Dvije velike računarske cjeline koje će biti obrađene su softverske implementacije raznih logičkih koncepata
+Dvije velike računarske cjeline koje će biti obrađene su: softverske implementacije raznih logičkih koncepata
 (za sada Haskell, u budućnosti ćemo vidjeti), i logičko programiranje (Prolog).
 Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 
@@ -20,19 +21,18 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 * Seminar (35 bodova -- 10 za sâmo izlaganje, 10 za matematičku stranu, 15 za programsku stranu)
 * Zadaće (3 zadaće po 5 bodova -- 5 zadataka po 1 bod)
 
-## Studenti (Ako niste na popisu, javite se mailom):
+## Studenti (seminari):
 
 * Martina Alilović
 * Tin Babić
-* Gregor Boris Banušić (Seminar: DPLL algoritam; 26 bodova)
-* Domagoj Beti (Seminar: semantička stabla za logiku sudova; 18 bodova)
-* Vitomir Čanadi (Seminar: Monade u Haskellu; 24 boda + ... alpha-renaming)
-* Luka Horvat (Seminar: Parsiranje formula 1. reda; 33 boda)
+* Gregor Boris Banušić (DPLL algoritam)
+* Domagoj Beti (semantička stabla za logiku sudova)
+* Vitomir Čanadi (monade u Haskellu; + alpha-renaming)
+* Luka Horvat (parsiranje formula 1. reda)
 * Edita Kulović
 * Tomislav Levanić
 * Martina Lučan
-* Ivan Posavčević (Seminar: parsiranje nizovne reprezentacije formule; 30 bodova)
-* Vedran Rukavina
+* Ivan Posavčević (parsiranje formula logike sudova)
 
 ## Literatura
 
