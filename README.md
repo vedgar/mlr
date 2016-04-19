@@ -2,8 +2,7 @@
 
 ### Obavijest
 
-Prvi praktični kolokvij iz MLRa (Haskell) bit će u kolokvijskom razredu B2 (20. travnja od 12 do 15 sati).
-Rezultati će biti 2. svibnja u 12 sati.
+Prvi praktični kolokvij iz MLRa (Haskell) bit će u kolokvijskom razredu B2 (20. travnja od 12 do 15 sati). Kolokvij je u Praktikumu 3. Smijete raditi na svojim računalima ako želite. Rezultati će biti 2. svibnja u 12 sati.
 
 ## O kolegiju
 
