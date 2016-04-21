@@ -133,6 +133,7 @@ pNeg (Compound c [f,g]) | c == and_c = pNeg f ||| pNeg g
                         | c == cond_c = f & pNeg g
                         | c == bicond_c = pNeg f <-> g
                         | otherwise = Compound (neg_op c) [f, g]
+pNeg (Compound c fs) = Compound (neg_op c) fs
 pNeg (Quantified q v f) = Quantified (neg_quant q) v (pNeg f)
 neg_op (Conn k f) = Conn k (not . f)
 neg_quant Universal = Existential
