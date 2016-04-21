@@ -3,11 +3,9 @@ import qualified Data.List
 
 data Atom = At Char (Maybe Integer)
     deriving (Eq, Ord)
-
 instance Show Atom where
     show (At p Nothing) = [p]
     show (At p (Just i)) = p : show i
-
 p = At 'p' Nothing
 p1 = At 'p' (Just 1)
 p2 = At 'p' (Just 2)
@@ -15,35 +13,29 @@ q = At 'q' Nothing
 r = At 'r' Nothing
 s = At 's' Nothing
 
-data Clause = BackArrow (Set Atom) (Set Atom)
+type Aset = Set Atom
+showAset r = Data.List.intercalate "," (map show (elems r))
+
+data Clause = Aset :< Aset
     deriving (Eq, Ord)
 instance Show Clause where
-    show (BackArrow r q) = "(" ++ showset r ++ " <- " ++ showset q ++ ")"
-showset r = Data.List.intercalate "," (map show (elems r))
+    show (r :< q) = "(" ++ showAset r ++ " <- " ++ showAset q ++ ")"
+pos <~ neg = fromList pos :< fromList neg
 
-cl pos neg = BackArrow (fromList pos) (fromList neg)
+resolve (a :< b) (c :< d) = 
+    let isec a b = elems (intersection a b)
+        undel a b q = union a (delete q b)
+    in case (isec a d, isec b c) of
+        ([], [q]) -> Just (undel a c q :< undel d b q)
+        _ -> Nothing
+expand clf = fromList ([k | c1 <- t, c2 <- t, Just k <- [resolve c1 c2]] ++ t)
+    where t = elems clf
+converge = until =<< ((==) =<<)  -- http://stackoverflow.com/a/23924238/1875565
+contradictory clf = []<~[] `member` converge expand clf
 
-type ClausalForm = Set Clause
-
-clashing (BackArrow a b) (BackArrow c d) = (elems (intersection a d), elems (intersection b c))
-
-resolve c1@(BackArrow a b) c2@(BackArrow c d) = case (clashing c1 c2) of
-    ([q], []) -> [resolveBy q c1 c2]
-    ([], [q]) -> [resolveBy q c1 c2]
-    _ -> []
-
-resolveBy q (BackArrow a b) (BackArrow c d) = BackArrow (delete q (union a c)) (delete q (union b d))
-
-expand t = fromList ([k | c1 <- elems t, c2 <- elems t, k <- resolve c1 c2] ++ elems t)
-fixpoint clf | clf == expand clf = clf
-             | otherwise = fixpoint (expand clf)
-
-contradictory clf = emptyclause `member` fixpoint clf
-emptyclause = BackArrow empty empty
-
-test1 = contradictory (fromList [[q]`cl`[p], [p]`cl`[q], [p,q]`cl`[], []`cl`[p,q]])
-test2 = contradictory (fromList [[q]`cl`[p], [p]`cl`[q], [p,q]`cl`[]])
+test1 = contradictory (fromList [[q]<~[p], [p]<~[q], [p,q]<~[], []<~[p,q]])
+test2 = contradictory (fromList [[q]<~[p], [p]<~[q], [p,q]<~[]])
 
  -- prva zadaca, peti zadatak
-z1z5 = fromList [[p,q,s]`cl`[r], [r,s]`cl`[p], []`cl`[q,r], [p]`cl`[s], []`cl`[p,r], [r]`cl`[]]
+z1z5 = fromList [[p,q,s]<~[r], [r,s]<~[p], []<~[q,r], [p]<~[s], []<~[p,r], [r]<~[]]
 test3 = contradictory z1z5
