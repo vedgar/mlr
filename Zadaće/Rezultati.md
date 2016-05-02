@@ -4,7 +4,7 @@
 | Tin Babić | |
 | Gregor Boris Banušić | 26 |
 | Domagoj Beti | 18 |
-| Vitomir Čanadi | 24+ | 4.5
+| Vitomir Čanadi | 29 | 4.5
 | Luka Horvat | 33 |
 | Edita Kulović | |
 | Tomislav Levanić | | 4.5
