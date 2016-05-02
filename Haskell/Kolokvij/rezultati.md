@@ -1,5 +1,5 @@
-| Student |              Z1 | Z2 | Z3 | Z4 | Z5
-| ---: | ---: | ---: | ---: | ---: | ---: |
+| Student |              Z1 | Z2 | Z3 | Z4 | Z5 | Uk
+| ---: | ---: | ---: | ---: | ---: | ---: | --: |
 | Martina Alilović |      3 | 2  |  2 | 1  |    | 8
 | Tin Babić |             2 | 2  |    |    |    | 4
 | Gregor Boris Banušić |  3 | 2  |  2 |    |  0 | 7
