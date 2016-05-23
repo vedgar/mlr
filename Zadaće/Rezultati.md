@@ -8,5 +8,5 @@
 | Luka Horvat | 33 | | | | 22 | | 55
 | Edita Kulović | | | | | 5 | | 5
 | Tomislav Levanić | | 4.5 | | | 13 | | 18
-| Martina Lučan | | 3 | | | 5 | | 8
+| Martina Lučan | 22 | 3 | | | 5 | | 8
 | Ivan Posavčević | 30 | 3.5 | | | 12 | | 46
