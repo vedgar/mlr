@@ -30,7 +30,7 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 * Luka Horvat (parsiranje formula 1. reda)
 * Edita Kulović
 * Tomislav Levanić
-* Martina Lučan
+* Martina Lučan (lambda-račun: interpreter i redukcije)
 * Ivan Posavčević (parsiranje formula logike sudova)
 
 ## Literatura
