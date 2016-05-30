@@ -23,15 +23,22 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 ## Studenti (seminari):
 
 * Martina Alilović
-* Tin Babić
+* Tin Babić (Definite Clause Grammars)
 * Gregor Boris Banušić (DPLL algoritam)
 * Domagoj Beti (semantička stabla za logiku sudova)
-* Vitomir Čanadi (monade u Haskellu; + alpha-renaming)
+* Vitomir Čanadi (monade u Haskellu + alpha-renaming)
 * Luka Horvat (parsiranje formula 1. reda)
 * Edita Kulović
 * Tomislav Levanić
 * Martina Lučan (lambda-račun: interpreter i redukcije)
 * Ivan Posavčević (parsiranje formula logike sudova)
+
+## Slobodni seminari:
+
+* To mock a mockingbird (Smullyan)
+* Rješavanje logičkih zagonetki u Prologu
+* Interpreter za pseudoprograme za lambda-račun
+* Semantika reza (operator `!`) u Prologu i veza s negacijom
 
 ## Literatura
 
