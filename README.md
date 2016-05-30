@@ -33,7 +33,7 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 * Martina Lučan (lambda-račun: interpreter i redukcije)
 * Ivan Posavčević (parsiranje formula logike sudova)
 
-## Slobodni seminari:
+### Slobodni seminari (tko prvi, njegovo:)
 
 * To mock a mockingbird (Smullyan)
 * Rješavanje logičkih zagonetki u Prologu
