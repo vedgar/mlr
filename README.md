@@ -29,14 +29,13 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 * Vitomir Čanadi (monade u Haskellu + alpha-renaming)
 * Luka Horvat (parsiranje formula 1. reda)
 * Edita Kulović
-* Tomislav Levanić
+* Tomislav Levanić (rješavanje logičkih zagonetki u Prologu)
 * Martina Lučan (lambda-račun: interpreter i redukcije)
 * Ivan Posavčević (parsiranje formula logike sudova)
 
 ### Slobodni seminari (tko prvi, njegovo:)
 
 * To mock a mockingbird (Smullyan)
-* Rješavanje logičkih zagonetki u Prologu
 * Interpreter za pseudoprograme za lambda-račun
 * Semantika reza (operator `!`) u Prologu i veza s negacijom
 
