@@ -38,6 +38,7 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 * To mock a mockingbird (Smullyan)
 * Interpreter za pseudoprograme za lambda-račun
 * Semantika reza (operator `!`) u Prologu i veza s negacijom
+* Rezolucija s unifikacijom za logiku prvog reda
 
 ## Literatura
 
