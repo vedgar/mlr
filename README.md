@@ -22,7 +22,7 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 
 ## Studenti (seminari):
 
-* Martina Alilović
+* Martina Alilović (semantika reza u Prologu i veza s negacijom)
 * Tin Babić (Definite Clause Grammars)
 * Gregor Boris Banušić (DPLL algoritam)
 * Domagoj Beti (semantička stabla za logiku sudova)
@@ -37,7 +37,6 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 
 * To mock a mockingbird (Smullyan)
 * Interpreter za pseudoprograme za lambda-račun
-* Semantika reza (operator `!`) u Prologu i veza s negacijom
 * Rezolucija s unifikacijom za logiku prvog reda
 
 ## Literatura
