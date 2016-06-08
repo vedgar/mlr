@@ -28,16 +28,10 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 * Domagoj Beti (semantička stabla za logiku sudova)
 * Vitomir Čanadi (monade u Haskellu + alpha-renaming)
 * Luka Horvat (parsiranje formula 1. reda)
-* Edita Kulović
+* Edita Kulović (rezolucija s unifikacijom za logiku prvog reda)
 * Tomislav Levanić (rješavanje logičkih zagonetki u Prologu)
 * Martina Lučan (lambda-račun: interpreter i redukcije)
 * Ivan Posavčević (parsiranje formula logike sudova)
-
-### Slobodni seminari (tko prvi, njegovo:)
-
-* To mock a mockingbird (Smullyan)
-* Interpreter za pseudoprograme za lambda-račun
-* Rezolucija s unifikacijom za logiku prvog reda
 
 ## Literatura
 
