@@ -1,9 +1,5 @@
 # Matematička logika u računarstvu
 
-### Obavijest
-
-Priprema za kolokvij iz Prologa bit će danas (13. lipnja) od 9 do 12 sati u Pr3.
-
 ## O kolegiju
 
 Kolegij se održava u ljetnom semestru, za studente diplomskog studija matematike i računarstva.
@@ -35,4 +31,4 @@ Naravno, bit će napravljena i teorijska pozadina za te dvije cjeline.
 
 ## Literatura
 
-Skripta polagano nastaje, [zadnju verziju](https://github.com/vedgar/mlr/blob/master/Skripta/main.pdf) možete vidjeti u repozitoriju. Svi komentari na sadržaj i način prezentacije su dobrodošli. Literatura po kojoj zasad radimo je uglavnom Mordechai Ben-Ari, Mathematical Logic for Computer Science.
+Literatura po kojoj zasad radimo je uglavnom Mordechai Ben-Ari, Mathematical Logic for Computer Science.
