@@ -6,7 +6,7 @@
 | Domagoj Beti         | 18  |     |  2  |     | 5   |     |
 | Vitomir Čanadi       | 29  | 4.5 |11.5 |     | 20  |     |
 | Luka Horvat          | 33  |     |     |     | 22  |     |
-| Edita Kulović        | ... |     |  7  |     | 5   |     |
+| Edita Kulović        | 20  |     |  7  |     | 5   |     |
 | Tomislav Levanić     | 35  | 4.5 |7.5  |     | 13  |     |
-| Martina Lučan        | 22  | 3   | ?   |     | 5   |     |
+| Martina Lučan        | 22  | 3   |  9  |     | 5   |     |
 | Ivan Posavčević      | 30  | 3.5 |   7 |     | 12  |     |
