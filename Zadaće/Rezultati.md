@@ -4,7 +4,7 @@
 | Tin Babić            | 23  |     | 3   |3.5  | 4   |  13 |46  |2    |
 | Gregor Boris Banušić | 26  |     |     |     | 7   |  12 |45  |2  U |
 | Domagoj Beti         | 18  |     |  2  |2.5  | 5   |   4 |31  |1  P |
-| Vitomir Čanadi       | 29  | 4.5 |11.5 |     | 20  |  26 |91  |5    |
+| Vitomir Čanadi       | 29  | 4.5 |11.5 |     | 20  |  26 |91  |5  U |
 | Luka Horvat          | 33  |     |     |     | 22  |  28 |83  |4  U |
 | Edita Kulović        | 20  |     |  7  |  4  | 5   |  26 |62  |3    |
 | Tomislav Levanić     | 35  | 4.5 |7.5  |     | 13  |  22 |82  |4    |
