@@ -7,6 +7,8 @@
 | Vitomir Čanadi       | 29  | 4.5 |11.5 |     | 20  |  26 |91  |5  U |
 | Luka Horvat          | 33  |     |     |     | 22  |  28 |83  |4  U |
 | Edita Kulović        | 20  |     |  7  |  4  | 5   |  26 |62  |3    |
-| Tomislav Levanić     | 35  | 4.5 |7.5  |     | 13  |  22 |82  |4    |
+| Tomislav Levanić     | 35  | 4.5 |7.5  |     | 13  |  22 |82  |4  U |
 | Martina Lučan        | 22  | 3   |  9  |1.5  | 5   |  11 |51  |2    |
 | Ivan Posavčević      | 30  | 3.5 |   7 |3.5  | 12  |  13 |69  |3  U |
+
+Molim kolegu Babića, te kolegice Kulović i Lučan, da dođu na upis ocjene. Na fakultetu sam u četvrtak 7. srpnja od 12 do 15 sati - ili u A306, ili u 109.
