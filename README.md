@@ -1,5 +1,9 @@
 # Matematička logika u računarstvu
 
+### Obavijest!
+
+Za one koji bi htjeli naučiti "profesionalniji" Haskell, bez logičkih dodataka: http://www.fer.unizg.hr/predmet/puh
+
 ## O kolegiju
 
 Kolegij se održava u ljetnom semestru, za studente diplomskog studija matematike i računarstva.
