@@ -8,7 +8,5 @@
 | Luka Horvat          | 33  |     |     |     | 22  |  28 |83  |4   |  4.  |
 | Edita Kulović        | 20  |     |  7  |  4  | 5   |  26 |62  |3   |  8.  |
 | Tomislav Levanić     | 35  | 4.5 |7.5  |     | 13  |  22 |82  |4   |  5.  |
-| Martina Lučan        | 22  | 3   |  9  |1.5  | 5   |  11 |51  |2   |  ?   |
+| Martina Lučan        | 22  | 3   |  9  |1.5  | 5   |  11 |51  |2   |  14. |
 | Ivan Posavčević      | 30  | 3.5 |   7 |3.5  | 12  |  13 |69  |3   |  4.  |
-
-Molim kolegicu Lučan da mi se javi mailom u vezi upisa ocjene.
