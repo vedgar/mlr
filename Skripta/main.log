@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.6)  7 MAR 2016 07:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.3.6)  6 MAR 2017 04:50
 entering extended mode
 **main.tex
 (main.tex
@@ -342,24 +342,61 @@ Package: parskip 2001/04/09 non-zero parskip adjustments
 ("C:\Program Files\MiKTeX 2.9\tex\latex\cancel\cancel.sty"
 Package: cancel 2013/04/12 v2.2 Cancel math terms
 )
-\c@napomena=\count101
-\c@definicija=\count102
-\c@zadatak=\count103
-\c@teorem=\count104
-\c@korolar=\count105
+("C:\Program Files\MiKTeX 2.9\tex\latex\csquotes\csquotes.sty"
+Package: csquotes 2011/10/22 v5.1d context-sensitive quotations
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty"
+Package: etoolbox 2015/03/10 v2.1b e-TeX tools for LaTeX (JAW)
+
+(C:\Users\Veky\Software\TeX\tex\latex\misc\etex.sty
+Package: etex 2015/03/02 v2.1 eTeX basic definition package (PEB,DPC)
+\et@xins=\count101
+)
+\etb@tempcnta=\count102
+)
+(C:\Users\Veky\Software\TeX\tex\latex\graphics\keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks27
+)
+\csq@reset=\count103
+\csq@gtype=\count104
+\csq@glevel=\count105
+\csq@qlevel=\count106
+\csq@maxlvl=\count107
+\csq@tshold=\count108
+\csq@ltx@everypar=\toks28
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\csquotes\csquotes.def"
+File: csquotes.def 2011/10/22 v5.1d csquotes generic definitions
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\csquotes\csquotes.cfg"
+File: csquotes.cfg 
+))
+\c@napomena=\count109
+\c@definicija=\count110
+\c@zadatak=\count111
+\c@teorem=\count112
+\c@korolar=\count113
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+Package csquotes Info: Adjusting default style.
+Package csquotes Info: Redefining alias 'default' -> 'croatian'.
  (main.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
 
 (main.toc
 LaTeX Font Info:    Try loading font information for U+msa on input line 3.
@@ -392,41 +429,42 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 Poglavlje 2.
 [10
 
-] [11] [12] [13] [14] [15] [16]) (Rezolucija.tex [17]
-Poglavlje 3.
-[18
-
-]
-Overfull \hbox (5.04738pt too wide) in paragraph at lines 13--14
-[]\OT1/cmr/m/n/12 Iako mnogi vje-ruju da svaki al-go-ri-tam za SAT pro-blem ima
- puno slucajeva
+] [11] [12] [13]
+Overfull \hbox (5.64514pt too wide) in paragraph at lines 99--100
+[]\OT1/cmr/bx/n/12 Definicija 10. \OT1/cmr/m/it/12 For-mul-ska re-pre-zen-ta-ci
+ja \OT1/cmr/m/n/12 kla-uzule $\OML/cmm/m/it/12 r[]; [] ; r[] \OMS/cmsy/m/n/12  
+ \OML/cmm/m/it/12 q[]; [] ; q[]$
  []
 
-[19] [20]) [21] (main.aux) ) 
+[14] [15] [16] [17]) (Rezolucija.tex [18]
+Poglavlje 3.
+[19
+
+] [20] [21]) [22] (main.aux) ) 
 Here is how much of TeX's memory you used:
- 1941 strings out of 493698
- 21961 string characters out of 3144845
- 84687 words of memory out of 3000000
- 5248 multiletter control sequences out of 15000+200000
+ 2837 strings out of 493698
+ 34733 string characters out of 3144845
+ 110045 words of memory out of 3000000
+ 6124 multiletter control sequences out of 15000+200000
  10804 words of font info for 40 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 27i,17n,26p,909b,271s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Veky/Software/TeX/fonts/type1/public/amsf
-onts/cm/cmbx12.pfb><C:/Users/Veky/Software/TeX/fonts/type1/public/amsfonts/cm/c
-mcsc10.pfb><C:/Users/Veky/Software/TeX/fonts/type1/public/amsfonts/cm/cmex10.pf
-b><C:/Users/Veky/Software/TeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Use
-rs/Veky/Software/TeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/Veky/So
-ftware/TeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Veky/Software/TeX
-/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Veky/Software/TeX/fonts/typ
-e1/public/amsfonts/cm/cmr8.pfb><C:/Users/Veky/Software/TeX/fonts/type1/public/a
-msfonts/cm/cmsl12.pfb><C:/Users/Veky/Software/TeX/fonts/type1/public/amsfonts/c
-m/cmsy10.pfb><C:/Users/Veky/Software/TeX/fonts/type1/public/amsfonts/cm/cmsy8.p
-fb><C:/Users/Veky/Software/TeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Us
-ers/Veky/Software/TeX/fonts/type1/public/amsfonts/latxfont/line10.pfb><C:/Users
-/Veky/Software/TeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (21 pages, 214920 bytes).
+ 30i,17n,26p,910b,271s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/Veky/Software/TeX/fonts/type1/public/am
+sfonts/cm/cmbx12.pfb><C:/Users/Veky/Software/TeX/fonts/type1/public/amsfonts/cm
+/cmcsc10.pfb><C:/Users/Veky/Software/TeX/fonts/type1/public/amsfonts/cm/cmex10.
+pfb><C:/Users/Veky/Software/TeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/U
+sers/Veky/Software/TeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/Veky/
+Software/TeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Veky/Software/T
+eX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Veky/Software/TeX/fonts/t
+ype1/public/amsfonts/cm/cmr8.pfb><C:/Users/Veky/Software/TeX/fonts/type1/public
+/amsfonts/cm/cmsl12.pfb><C:/Users/Veky/Software/TeX/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb><C:/Users/Veky/Software/TeX/fonts/type1/public/amsfonts/cm/cmsy8
+.pfb><C:/Users/Veky/Software/TeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/
+Users/Veky/Software/TeX/fonts/type1/public/amsfonts/latxfont/line10.pfb><C:/Use
+rs/Veky/Software/TeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (22 pages, 216697 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
+ 129 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

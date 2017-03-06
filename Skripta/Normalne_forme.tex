@@ -96,7 +96,9 @@ Prisjetimo se, konjunkcija je definirana za svaku mjesnost $k$ kao minimum istin
 $$\wedge^0=\top\qquad\vee^0=\bot\qquad\wedge^1=\vee^1=id\qquad\wedge^2=\wedge\qquad\vee^2=\vee$$
 
 \begin{definicija}
-\emph{Formulska reprezentacija} klauzule $r_1,\ldots,r_n\leftarrow q_1\ldots q_m$ je formula $(q_1\wedge\cdots\wedge q_m)\to(r_1\vee\cdots\vee r_n)$. Formulska reprezentacija konačne klauzalne forme je konjunkcija formulskih reprezentacija svih njenih klauzula.
+\emph{Formulska reprezentacija} klauzule $r_1,\ldots,r_n\leftarrow q_1,\ldots,q_m$ je formula $(q_1\wedge\cdots\wedge q_m)\to(r_1\vee\cdots\vee r_n)$.
+
+Formulska reprezentacija konačne klauzalne forme je konjunkcija formulskih reprezentacija svih njenih klauzula.
 \end{definicija}
 
 \begin{zadatak}\label{zad:clfeqfr}
@@ -117,6 +119,14 @@ Vidimo da svaki veznik možemo zapisati koristeći samo konjunkciju, disjunkciju
 	Atomarne formule i negacije atomarnih formula zovemo \emph{literalima}.
 	Dakle, svaka formulska reprezentacija klauzule jednaka je disjunkciji literala, koju još zovemo \emph{elementarnom disjunkcijom}. Sada je jasno da je svaka formulska reprezentacija konačne klauzalne forme ekvivalentna konjunkciji elementarnih disjunkcija, koju zovemo \emph{konjunktivnom normalnom formom} početne klauzalne forme.
 \end{definicija}
+
+\begin{napomena}
+	Često se u literaturi \emph{klauzulama} zovu ono što smo mi nazvali \emph{elementarne disjunkcije}, dok se \emph{klauzalnom formom} zove ono što smo mi nazvali \emph{konjunktivna normalna forma}. 
+	
+	Iako su, kao što smo vidjeli, ti pojmovi vrlo bliski i pretvorbe u oba smjera su trivijalne i \enquote{mehaničke}, dobro je razlikovati te pojmove: prvo, jer su pojmovi elementarne disjunkcije i konjunktivne normalne forme uvedeni već u prijašnjem kolegiju (Matematička logika), a drugo, jer su klauzule kao zasebni entiteti izuzetno korisne za shvaćanje logičkog programiranja.
+	
+	Intuitivno, formule su statički objekti, koji ništa ne \enquote{rade}. Klauzule, s druge strane, omogućuju \emph{izračunavanje} i \emph{pretraživanje} prostora mogućnosti. Više o tome reći ćemo kad budemo pričali o logičkom programiranju.
+\end{napomena}
 
 \section{Izrazivost veznika}
 Sada ćemo se malo detaljnije pozabaviti veznicima. U definiciji formule smo samo rekli da je veznik bilo koja funkcija sa $\{0,1\}^k$ u $\{0,1\}$ za neki $k\in\mathbb N$. Preciznije, za svaki prirodni $k$ imamo skup $Conn^k:=\{0,1\}^{\{0,1\}^k}$ veznika mjesnosti $k$, dok je skup svih veznika jednak $Conn:=\bigcup_{k\in\mathbb N}Conn^k$.
@@ -193,8 +203,8 @@ Sada je lako vidjeti da je
 $\{\neg,\vee\}$ dovoljan (de Morganovo pravilo nam daje $\wedge$), pa je i $\{\neg, \to\}$ dovoljan ($(p_1\vee p_2)\Leftrightarrow(\neg p_1\to p_2)$), a onda je i $\{\bot,\to\}$ dovoljan ($\neg p_1\Leftrightarrow(p_1\to\bot)$).
 
 \begin{zadatak}\begin{enumerate}
-		\item[(a)] Dokažite da skup $\{\neg,\leftrightarrow\}$ nije dovoljan.
-		\item[(b)] Dokažite da skup $Conn^0\cup Conn^1$ nije dovoljan.
-		\item[(c)] Nađite neki jednočlan dovoljan skup veznika, i dokažite da je dovoljan.
-	\end{enumerate}
+	\item[(a)] Dokažite da skup $\{\neg,\leftrightarrow\}$ nije dovoljan.
+	\item[(b)] Dokažite da skup $Conn^0\cup Conn^1$ nije dovoljan.
+	\item[(c)] Nađite neki jednočlan dovoljan skup veznika, i dokažite da je dovoljan.
+\end{enumerate}
 \end{zadatak}
