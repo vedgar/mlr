@@ -8,25 +8,49 @@ Vidjeli smo da je klauzalna forma valjana ako i samo ako su sve njene klauzule v
 
 Drugim riječima, za klauzalnu formu postoji \emph{linearni} algoritam koji ustanovljuje je li valjana. Ovisno o implementaciji atoma i skupova taj algoritam može biti $O(n\log n)$ ili čak $O(n^2)$, ali u svakom slučaju je polinoman.
 
-S druge strane, \emph{ispunjivost} klauzalne forme je puno teže ispitati. To je slavni SAT (\emph{satisfiability}) problem, prvi problem za kojeg je dokazano da je \emph{NP-potpun}, odnosno da se svaki problem čije rješenje se može \emph{provjeriti} u polinomnom vremenu (skup takvih problema označavamo s $NP$) može svesti na SAT. Kako je SAT također u $NP$ (očito, ako nam netko dade interpretaciju za klauzalnu formu, izračunati joj vrijednost je lako moguće već u kvadratnom vremenu, pa ćemo lako provjeriti čini li dana interpretacija rješenje problema ispunjivosti), polinomni algoritam za SAT značio bi da je klasa $P$ problema rješivih u polinomnom vremenu, jednaka klasi $NP$. Mnogi stručnjaci za složenost u to sumnjaju, a za matematički dokaz točnog odnosa između $P$ i $NP$ Clay Institute nudi milijun dolara još od 2000.\ godine.
+S druge strane, \emph{ispunjivost} klauzalne forme je puno teže ispitati. To je slavni SAT (\emph{satisfiability}) problem, prvi problem za kojeg je dokazano da je \emph{NP-potpun}. Više o tome čut ćete na kolegiju Složenost algoritama, ali ukratko, NP označava klasu problema za koje je u polinomnom vremenu ($p(n)$ koraka, gdje je $p$ neki polinom a $n$ broj bitova ulaza) moguće provjeriti je li zadani niz bitova (opet, veličine ograničene polinomom od $n$) validni \emph{certifikat} za rješenje.
 
-Iako mnogi vjeruju da svaki algoritam za SAT problem ima puno slu\-ča\-je\-va u kojima nema bitno boljeg rješenja od jednostavnog eksponencijalnog ispitivanja svih $2^n$ mogućnosti (gdje je $n$ broj različitih atoma koji se pojavljuju u klauzalnoj formi), ipak postoje mnoge heuristike, koje dodatno dobivaju na značenju činjenicom da se mnogi vrlo stvarni problemi (primjerice, problem rasporeda sati) mogu izraziti kao instance SAT problema.
+Recimo, problem provjere je li zadani broj složen je u NP: faktorizacija može biti teška, ali ako nam netko dade faktor, lako je provjeriti da je ulaz njime djeljiv u polinomnom vremenu.
 
-\section{Rezolucija}
+Svakako, sada vidimo da je SAT u NP: naći interpretaciju može biti teško, ali ako imamo interpretaciju, lako je u polinomnom  (precizno, kvadratnom) vremenu \emph{provjeriti} da je pod njom forma istinita. Zapravo vrijedi puno više od toga: ne samo da je SAT u NP, već se svaki problem $X$ u NP može \emph{svesti} na SAT: postoji polinomni algoritam koji preslikava instance problema $X$ u instance problema SAT (to su klauzalne forme), čuvajući rješivost: zadana instanca problema $X$ ima rješenje ako i samo ako je odgovarajuća klauzalna forma ispunjiva.
 
-Ne sve, ali mnoge od tih heuristika zasnivaju se na \emph{rezoluciji}, jednostavnom logičkom principu koji nam omogućuje da od dvije klauzule dobijemo jednu novu, koju onda možemo koristiti dalje. Jednostavna analogija koja nam može pomoći je sljedeća: zamislimo da ispred sebe imamo puno klauzula, i moramo naći vrijednosti koje ćemo pridružiti atomima tako da sve one budu istinite. Kad ga gledamo na taj način, problem donekle podsjeća na rješavanje sustava jednadžbi: svaka može biti zadovoljena na razne načine jer ima puno nepoznanica, ali uvjet da \emph{sve} moraju biti zadovoljene bitno smanjuje broj mogućnosti.
+Iz toga slijedi da, kad bismo imali polinomni algoritam za rješavanje problema SAT, zapravo bismo imali polinomni algoritam za rješavanje \emph{svih} problema u NP, odnosno vrijedilo bi $P=NP$ ($P$ označava klasu problema za čije rješavanje postoji polinomni algoritam).
+Mnogi stručnjaci za složenost u to sumnjaju, a za matematički dokaz točnog odnosa između $P$ i $NP$ Clay Institute nudi milijun dolara još od 2000.\ godine.
 
-Tehnika koju obično koristimo kod rješavanja sustava algebarskih jednadžbi je \emph{supstitucija}. Njome iz para jednadžbi eliminiramo jednu nepoznanicu, tako da je izrazimo iz jedne i uvrstimo izraz za nju u onu drugu. Zapravo, često ako su jednadžbe dovoljno pravilne strukture, i ne moramo izražavati pa uvrštavati: jednostavnim agregiranjem (zbrajanjem) jednadžbi kojima se nepoznanica nalazi na suprotnim stranama, ona se reducira (po\-ni\-šta\-va) i time nestaje iz rezultatne jednadžbe.
-$$\left.\begin{array}{r@{\;=\;}l}x+\cancel{y}&a+b\\c&\cancel{y}+z\end{array}\right\}\quad\Longrightarrow\quad x + c = a + b + z$$
-Klauzule \emph{jesu} vrlo pravilne strukture, i pokazuje se da je vrlo sličan manevar moguće napraviti s njima. Pogledajmo za početak neke singularne slučajeve.
+Iako mnogi vjeruju da svaki algoritam za SAT problem ima puno slu\-ča\-je\-va u kojima nema bitno boljeg rješenja od jednostavnog eksponencijalnog ispitivanja svih $2^n$ mogućnosti (gdje je $n$ broj različitih atoma koji se pojavljuju u klauzalnoj formi), ipak postoje mnoge heuristike, koje dodatno dobivaju na značenju činjenicom da su mnogi vrlo stvarni problemi (primjerice, problem rasporeda sati) u NP, pa se mogu izraziti kao instance SAT problema.
+
+Ne sve, ali mnoge od tih heuristika zasnivaju se na \emph{rezoluciji}, jednostavnom logičkom principu koji nam omogućuje da od dvije klauzule dobijemo jednu novu, koju onda možemo koristiti dalje. No prvo pogledajmo neke slučajeve koje možemo riješiti jednustavnijim heuristikama.
+
+\section{Jednostavni slučajevi i DPLL algoritam}
 
 Iako moramo samo odrediti je li forma ispunjiva (da/ne), za dalja raz\-miš\-lja\-nja pomoći će ako se ponašamo kao da moramo baš naći interpretaciju $I_1$ koja je čini istinitom.
 
-Prvo, očito atome koji se uopće ne pojavljuju možemo ignorirati, odnosno interpretaciju ne moramo definirati na njima. Što je s atomima koji se pojavljuju samo jednom? Lako je vidjeti da ih možemo iskoristiti kao ``džokere'': ako se pojavljuju na lijevoj strani klauzule, definiramo interpretaciju na njima kao $1$, a ako se pojavljuju na desnoj, definiramo interpretaciju na njima kao $0$. Ta klauzula time postaje zadovoljena i možemo je brisati iz klauzalne forme. Sad se lako vidi da potpuno isti pristup funkcionira i ako se određeni atom pojavljuje više puta, ali uvijek na istoj strani klauzule (uvijek na lijevoj, ili uvijek na desnoj).
+Prvo, očito atome koji se uopće ne pojavljuju možemo ignorirati, odnosno interpretaciju $I_1$ ne moramo definirati na njima. Što je s atomima koji se pojavljuju samo jednom? Lako je vidjeti da ih možemo iskoristiti kao ``džokere'': ako se pojavljuju na lijevoj strani klauzule, definiramo $I_1$ na njima kao $1$, a ako se pojavljuju na desnoj, definiramo $I_1$ na njima kao $0$.
 
-Idemo dalje. Što ako se neki atom pojavljuje dvaput, na različitim stranama klauzule? Ako se pojavljuje na različitim stranama \emph{iste} klauzule, tad znamo da je ta klauzula tautologija, pa je uvijek zadovoljena i možemo je brisati. Što ako se pojavljuje na različitim stranama dviju različitih klauzula?
+Ta klauzula time postaje zadovoljena i možemo je brisati iz klauzalne forme. Štoviše, sad se lako vidi da potpuno isti pristup funkcionira i ako se određeni atom pojavljuje više puta, ali uvijek na istoj strani klauzule (uvijek na lijevoj, ili uvijek na desnoj). Takvi atomi zovu se \emph{čisti} atomi.
 
-Takve klauzule zovemo \emph{ulančanima}. Precizno, klauzule $A\leftarrow B$ i $C\leftarrow D$ su ulančane ako je $(A\cap D)\cup(B\cap C)\not=\emptyset$. Odaberimo jedan element tog presjeka, neka je to $q$. (Poslije ćemo vidjeti da je zapravo jedini zanimljiv slučaj kad je $q$ jedinstven.) Bez smanjenja općenitosti (inače zamijenimo klauzule), $q\in A\cap D$. Vrijednost $I_1(q)$ je ili $0$ ili $1$. Ako je $0$, klauzula $C\leftarrow D$ je istinita (jer je $q\in D$), i trebamo samo gledati $A\setminus\{q\}\leftarrow B$. Ako je pak $1$, klauzula $A\leftarrow B$ je istinita (jer je $q\in A$), i trebamo samo gledati $C\leftarrow D\setminus\{q\}$.
+Idemo dalje. Što ako se neki atom pojavljuje dvaput, na različitim stranama klauzule? Ako se pojavljuje na različitim stranama \emph{iste} klauzule, tad znamo da je ta klauzula tautologija, pa je uvijek zadovoljena i možemo je brisati. Netrivijalan slučaj nastupa ako se isti atom pojavljuje na različitim stranama dviju različitih klauzula, i razmatranje tog slučaja vodi na rezoluciju. Zasad samo pogledajmo još nekoliko jednostavnih slučajeva.
+
+Ako se neka (\enquote{jedinična}) klauzula sastoji samo od jednog atoma $p$, vrijednost $I_1(p)$ je time fiksirana: ako imamo klauzulu $p\leftarrow$, mora biti $I_1(p)=1$, a ako imamo klauzulu $\leftarrow p$, mora biti $I_1(p)=0$. Time ne samo da je ta klauzula zadovoljena, već možemo brisati $p$ iz svih ostalih klauzula u kojima se pojavljuje. Ako se pojavljuje na istoj strani kao u jediničnoj klauzuli, možemo obrisati i čitavu tu klauzulu, jer znamo da je ispunjena. Ako je na suprotnoj strani nego u jediničnoj klauzuli, možemo samo brisati taj atom, ali time i ta klauzula može postati jedinična, te se postupak može nastaviti dalje.
+
+Zapažanje iz prethodnog odlomka možemo generalizirati na još jedan način: za klauzulu $A\leftarrow B$ kažemo da \emph{obuhvaća} klauzulu $C\leftarrow D$ ako je $A\subseteq C\land B\subseteq D$. Lako je vidjeti da u tom slučaju bilo koja interpretacija pod kojom je istinita $A\leftarrow B$, čini istinitom i klauzulu $C\leftarrow D$ --- odnosno, ako je $A\leftarrow B$ element naše klauzalne forme čiju ispunjivost ispitujemo, tada možemo iz nje brisati sve klauzule $C\leftarrow D$ koje su njome obuhvaćene.
+
+Sistematska razrada upravo opisanih ideja vodi na DPLL, vjerojatno najpoznatiji \enquote{generički} algoritam za rješavanje SAT problema. Na profinjenjima toga algoritma radi se i danas, prvenstveno u tri smjera:
+\begin{enumerate}
+	\item Ako ne nastupa nijedan od gore navedenih specijalnih slučajeva, moramo pametno odabrati neki atom, te vrijednost koju ćemo mu pokušati pridružiti. Naravno, ako ta grana ne uspije, moramo se vratiti (\emph{backtrack}) i pokušati mu pridružiti suprotnu vrijednost. Strategijâ za odabir ima puno, vrlo je netrivijalno naći pravu, a bitno utječu na kasnije odvijanje algoritma i veličinu preostalog prostora mogućnosti koje treba ispitati.
+	\item Eliminacija atoma koji se pojavljuju u jediničnim klauzulama, rekli smo, može dovesti do stvaranja novih jediničnih klauzula, što može stvoriti duge \enquote{domino-lance} klauzulâ. Netrivijalno je smisliti dobru strukturu podataka koja će takvu operaciju izvršavati vrlo brzo, pogotovo uzevši u obzir da i vraćanje prethodnog stanja mora biti brzo zbog čestog \emph{backtracking}a.
+	\item U zadnjem desetljeću naučili smo mnoge nove trikove vezane uz strojno učenje. Vrlo je plodno područje pokušaja implementacije tih trikova u DPLL algoritmu. Recimo, jedna od mogućnosti je natjerati algoritam da uoči ako mu se neki \emph{cluster} u $I_1$ uvijek iznova pokaže proturječnim, te ga počne izbjegavati (odnosno prije njegovog ispitivanja pokušati nešto drugo) u kasnijim grananjima.
+\end{enumerate}
+
+\section{Rezolucija}
+
+Jednostavna analogija koja nam može pomoći razumjeti ideju rezolucije je sljedeća: zamislimo da ispred sebe imamo puno klauzula, i moramo naći vrijednosti koje ćemo pridružiti atomima tako da sve one budu istinite. Kad ga gledamo na taj način, problem donekle podsjeća na rješavanje sustava jednadžbi: svaka može biti zadovoljena na razne načine jer ima puno nepoznanica, ali uvjet da \emph{sve} moraju biti zadovoljene bitno smanjuje broj mogućnosti.
+
+Tehnika koju obično koristimo kod rješavanja sustava algebarskih jednadžbi je \emph{supstitucija}. Njome iz para jednadžbi eliminiramo jednu nepoznanicu, tako da je izrazimo iz jedne i uvrstimo izraz za nju u onu drugu. Zapravo, često ako su jednadžbe dovoljno pravilne strukture, i ne moramo izražavati pa uvrštavati: jednostavnim agregiranjem (zbrajanjem) jednadžbi kojima se nepoznanica nalazi na suprotnim stranama, ona se reducira (po\-ni\-šta\-va) i time nestaje iz rezultatne jednadžbe.
+$$\left.\begin{array}{r@{\;=\;}l}x+\cancel{y}&a+b\\c&\cancel{y}+z\end{array}\right\}\quad\Longrightarrow\quad x + c = a + b + z$$
+Klauzule \emph{jesu} vrlo pravilne strukture (iako nesimetričnost znači da bolje odgovaraju \emph{nejednadžbama} nego jednadžbama), i pokazuje se da je vrlo sličan manevar moguće napraviti s njima. 
+
+Dakle, rezoluciju primjenjujemo kad imamo isti atom na različitim stranama dvije klauzule. Takve klauzule zovemo \emph{ulančanima}. Precizno, klauzule $A\leftarrow B$ i $C\leftarrow D$ su ulančane ako je $(A\cap D)\cup(B\cap C)\not=\emptyset$. Odaberimo jedan element tog presjeka, neka je to $q$. (Poslije ćemo vidjeti da je zapravo jedini zanimljiv slučaj kad je $q$ jedinstven.) Bez smanjenja općenitosti (inače zamijenimo klauzule), $q\in A\cap D$. Vrijednost $I_1(q)$ je ili $0$ ili $1$. Ako je $0$, klauzula $C\leftarrow D$ je istinita (jer je $q\in D$), i trebamo samo gledati $A\setminus\{q\}\leftarrow B$. Ako je pak $1$, klauzula $A\leftarrow B$ je istinita (jer je $q\in A$), i trebamo samo gledati $C\leftarrow D\setminus\{q\}$.
 
 Dakle, ako je $I_1$ rješenje, tada je ili neki atom iz $A\setminus\{q\}$ istinit, ili je neki atom iz $B$ lažan, ili je neki atom iz $C$ istinit, ili je neki atom iz $D\setminus\{q\}$ lažan. Pišući to drugim redom (grupirajući posebno istinite a posebno lažne mogućnosti), dobivamo da je pod $I_1$ istinita klauzula $$(A\setminus\{q\})\cup C\leftarrow B\cup(D\setminus\{q\})\;,$$
 koju zovemo \emph{rezolventom} klauzula $A\leftarrow B$ i $C\leftarrow D$, i označavamo je oznakom $(C\leftarrow D)\;\cancel{q}\;(A\leftarrow B)$. Proces kojim je ta klauzula dobivena od početnih zovemo \emph{rezolucijom}.
@@ -34,3 +58,29 @@ koju zovemo \emph{rezolventom} klauzula $A\leftarrow B$ i $C\leftarrow D$, i ozn
 Vidjeli smo da ako su dvije klauzule ulančane i istinite pod nekom interpretacijom, tada je pod istom interpretacijom istinita i njihova rezolventa s obzirom na neki atom po kojem su ulančane. Što ako ima više takvih atoma? Lako je vidjeti da ako su različiti atomi $q$ i $r$ svaki na različitim stranama dvije klauzule, tada ako napravimo rezoluciju po $q$, rezolventa će imati $r$ na obje strane, i jednako tako ako napravimo rezoluciju po $r$, rezolventa će imati $q$ na obje strane. U svakom slučaju rezolventa će biti tautologija, pa je možemo brisati iz klauzalne forme. Iz tog razloga rezolventa se obično gleda samo kad imamo jedinstveni atom na suprotnim stranama dvije različite klauzule.
 
 Opet, jasno je da se postupak može provesti i ako se $q$ javlja na više od dva mjesta, u ostalim klauzulama. Tada nismo eliminirali nepoznanicu u potpunosti, ali smo svejedno napravili korak prema pojednostavljenju.
+
+Nažalost, kao i u slučaju rješavanja linearnih sustava, ne možemo rezolvirane klauzule jednostavno zamijeniti rezolventom, već moramo rezolventu dodati u skup klauzula koje razmatramo. Ipak, taj postupak će za konačne klauzalne forme stati iz jednostavnog razloga što u početku imamo samo konačno mnogo atoma, rezolucija ne stvara nove atome, a \emph{svih} klauzula nad konačno mnogo atoma ima samo konačno mnogo.
+
+\begin{zadatak}-
+	Dokažite da svih relevantnih (ispunjivih i oborivih) klauzula nad $n$ atoma ima $3^n-1$.
+\end{zadatak}
+
+Dakle, algoritam rezolucije je sljedeći:
+
+\begin{algorithmic}
+	\Require $S$ je konačna klauzalna forma (skup klauzula).
+	\ForAll {klauzule $(A\leftarrow B), (C\leftarrow D)\in S$}
+		\If {$\left|A\cap D\right|=1 \And B\cap C=\emptyset$}
+			\State $q:=\mbox{jedini element od }A\cap D$
+			\State $\mbox{rezolventa}:=(A\setminus\{q\})\cup C\leftarrow B\cup(D\setminus\{q\})$
+			\If {rezolventa = $(\leftarrow)$}
+				\Return \enquote{$S$ je proturječna!}
+			\EndIf
+			\State $S:=S\cup \{\mbox{rezolventa}\}$
+		\EndIf
+	\EndFor
+\end{algorithmic}
+
+Sasvim je jasno iz prethodnih razmatranja (ako su dvije ulančane klauzule istinite pod $I_1$, tada je i njihova rezolventa istinita pod istom interpretacijom) da algoritam rezolucije pokrenut na ispunjivoj klauzalnoj formi $S$ može generirati samo ispunjive rezolvente, pa nikada ne može javiti da je $S$ proturječna. To znači da je algoritam rezolucije \emph{adekvatan} za logiku sudova.
+
+Zapravo vrijedi i obrat: algoritam rezolucije je i \emph{potpun} za logiku sudova, što znači 

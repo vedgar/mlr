@@ -11,4 +11,5 @@
 \contentsline {section}{\numberline {2.4}Izrazivost veznika}{15}
 \contentsline {chapter}{\numberline {3}Rezolucija}{19}
 \contentsline {section}{\numberline {3.1}SAT problem}{19}
-\contentsline {section}{\numberline {3.2}Rezolucija}{20}
+\contentsline {section}{\numberline {3.2}Jednostavni slu\IeC {\v c}ajevi i DPLL algoritam}{20}
+\contentsline {section}{\numberline {3.3}Rezolucija}{22}
