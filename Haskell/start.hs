@@ -6,6 +6,8 @@ data Formula = Atom Char
 
 instance Show Formula where
   show (Atom c) = [c]
+  show (LogConst True) = "T"
+  show (LogConst False) = "F"
   show (Unary c f) = [c] ++ show f
   show (Binary c f g) = "(" ++ show f ++ [c] ++ show g ++ ")"
 
@@ -15,10 +17,10 @@ f & g = Binary '&' f g
 ne f = Unary '!' f
 
 type Interp = (Char -> Bool)
-interp i (Atom c) = i c
-interp i (LogConst b) = b
-interp i (Unary '!' f) = not (interp i f)
-interp i (Binary '&' f g) = min (interp i f) (interp i g)
+vrijednost i (Atom c) = i c
+vrijednost i (Unary '!' f) = not (vrijednost i f)
+vrijednost i (Binary '&' f g) = min (vrijednost i f) (vrijednost i g)
+vrijednost i (LogConst b) = b
 
 i1 c = c == 'p' || c == 'q'
-test1 = interp i1 $ Binary '&' (Atom 'p') (Unary '!' $ Atom 'q')
+test1 = vrijednost i1 $ Binary '&' (Atom 'p') (Unary '!' $ Atom 'q')
