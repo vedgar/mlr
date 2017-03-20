@@ -83,4 +83,63 @@ Dakle, algoritam rezolucije je sljedeći:
 
 Sasvim je jasno iz prethodnih razmatranja (ako su dvije ulančane klauzule istinite pod $I_1$, tada je i njihova rezolventa istinita pod istom interpretacijom) da algoritam rezolucije pokrenut na ispunjivoj klauzalnoj formi $S$ može generirati samo ispunjive rezolvente, pa nikada ne može javiti da je $S$ proturječna. To znači da je algoritam rezolucije \emph{adekvatan} za logiku sudova.
 
-Zapravo vrijedi i obrat: algoritam rezolucije je i \emph{potpun} za logiku sudova, što znači 
+\section{Potpunost algoritma rezolucije}
+
+Zapravo vrijedi i obrat: algoritam rezolucije je i \emph{potpun} za logiku sudova, što znači da ako je početna klauzalna forma proturječna, algoritam ne može ispitati \emph{sve} parove klauzula (uključujući novododane klauzule) a da ne generira praznu klauzulu. Štoviše, jer svih klauzula koje algoritam rezolucije može generirati ima konačno mnogo, algoritam će sigurno stati, i adekvatnost i potpunost tada znače da će dati točan rezultat: \enquote{$S$ je proturječna} ako i samo ako $S$ doista jest proturječna.
+
+Precizan dokaz potpunosti može se naći u~\cite{BenAri} i predstavlja dobru temu za seminar. Ovdje samo dajemo ideju dokaza.
+
+Poredajmo atome u $S$ u kanonskom redoslijedu (slova po abecedi, neindeksirani prije indeksiranih, indeksirani atomi istog slova po indeksu) i nazovimo ih $a_1$, $a_2$, \ldots, $a_n$. Za $1\le k\le n$, $k$-klauzulom zovemo oborivu klauzulu $A\leftarrow B$ čiji je $Var$ skup prvih $k$ atoma $\{a_1,...a_k\}$.
+Sada promotrimo potpuno binarno stablo visine $n$ na čijoj $k$-toj razini se nalaze upravo sve $k$-klauzule (njih $2^k$), te su djeca (za $k<n$) svake takve klauzule
+$A\leftarrow B$ dvije klauzule koje nastaju dodavanjem atoma $a_{k+1}$ na svaku stranu ($A\cup\{a_{k+1}\}\leftarrow B$ lijevo, $A\leftarrow B\cup\{a_{k+1}\}$ desno). 
+
+Dakle, u korijenu je prazna klauzula: jedina $0$-klauzula. Također primijetimo da u svakom putu u stablu, gornja klauzula obuhvaća donju. Za kraj još primijetimo da je svaki unutarnji čvor upravo rezolventa svoje djece: $$(A\cup\{a_{k+1}\}\leftarrow B)\;\cancel{a_{k+1}}\;(A\leftarrow B\cup\{a_{k+1}\})=A\leftarrow B\;.$$
+Neke od tih $2^{n+1}-1$ klauzula su u $S$, ali moguće je da u $S$ imamo i klauzule koje nisu u stablu (npr.\ $a_3\leftarrow a_1$). Ipak, za svaku klauzulu $K\in S$ ima bar jedna (među listovima njih točno $2^{n-\left|Vars(K)\right|}$) klauzula koju $K$ obuhvaća.
+
+Ako sada u stablu \enquote{blokiramo} sve klauzule obuhvaćene elementima iz $S$, lako se vidi da proturječnost od $S$ znači da je svaki put od korijena do lista negdje blokiran. Naime, dualno, putovi od korijena do lista odgovaraju interpretacijama za $S$, pri čemu izbor smjera kojim treba ići na $k$.\ razini odgovara vrijednosti interpretacije na $a_k$ (lijevo znači $I(a_k)=0$, desno znači $I(a_k)=1$). Lako se vidi da takva interpretacija čini lažnima samo klauzule do kojih njen put dolazi. Kad neki put ne bi bio blokiran, interpretacija njime određena bi činila istinitom čitav $S$.
+
+Blokirane klauzule ne moraju dakle nužno biti doista elementi od $S$, ali možemo se pretvarati kao da jesu: obuhvaćene su njima, pa će rezolucija na blokiranim klauzulama dati klauzulu koja je obuhvaćena rezolventom neke dvije klauzule koje doista jesu u $S$. (Ovo je najmutniji dio, zbog kojeg je ovo samo ideja dokaza. Trebalo bi pokazati da rezolucija čuva relaciju uređaja po obuhvaćenosti.)
+
+\begin{tikzpicture}
+\Tree 
+[.$\leftarrow$
+ [.$p\leftarrow$
+  [.$p,q\leftarrow$
+    [.{\scriptsize $p,q,r\leftarrow$} ]
+    [.{\scriptsize $p,q\leftarrow r$} ]
+  ]
+  [.$p\leftarrow q$
+  	[.{\scriptsize
+  		$p,r\leftarrow q$} ]
+  	[.{\scriptsize
+  		$p\leftarrow q,r$} ]
+  ]
+ ]
+ [.$\leftarrow p$
+  [.$q\leftarrow p$
+    [.{\scriptsize
+    	$q,r\leftarrow p$} ]
+    [.{\scriptsize
+    	$q\leftarrow p,r$} ]
+  ]
+  [.$\leftarrow p,q$
+  	[.{\scriptsize
+  		$r\leftarrow p,q$} ]
+  	[.{\scriptsize
+  		$\leftarrow p,q,r$} ]
+  ]
+ ]
+]
+\end{tikzpicture}
+
+Sada je ključno primijetiti da svako takvo \enquote{blokiranje} mora ili imati blokiran korijen (u kom slučaju smo gotovi, jer je prazna klauzula element od $S$), ili imati neblokiran unutarnji čvor čija oba djeteta su blokirana. Primjerice, bilo koji neblokirani čvor maksimalne udaljenosti do korijena mora imati to svojstvo.
+
+No vidjeli smo da je svaki čvor, pa tako i taj, rezolventa svoje djece. Kako su mu djeca blokirana, rezolucijom možemo dobiti njega, obuhvaćenog nekom rezolventom elemenata iz $S$. To znači da i taj čvor možemo blokirati. Sada smo dobili novo stablo, iste strukture kao prije, samo s jednim blokiranim čvorom više.
+
+Kako je i s tim stablom moguće ponoviti isti postupak, i tako u nedogled, a svih čvorova ima konačno mnogo, postupak će prije ili kasnije završiti, a jedino može završiti blokiranjem korijena. To bi značilo da je prazna klauzula obuhvaćena nekim elementom koji je došao u $S$ --- no prazna klauzula može biti obuhvaćena jedino samom sobom, dakle prazna klauzula je u nekom trenutku došla u $S$.
+
+Kako algoritam rezolucije ispituje parove klauzula nekim redom, prije ili kasnije će naići upravo na par koji smo razmatrali ovdje, te će nakon toga u nekom trenutku \enquote{nabasati} na pravi par za dalje smanjenje, i tako dalje. Dakle, nakon dovoljno mnogo vremena, algoritam rezolucije pokrenut na proturječnoj klauzalnoj formi otkrit će da je proturječna (možda vrlo brzo, ako mu se \enquote{posreći}, a možda vrlo sporo, ali svakako u konačno mnogo koraka).
+
+Jednako tako, ispunjivost klauzalne forme znači postojanje bar jednog puta od korijena do lista koji nije blokiran. Tada ako označimo sve takve putove, lako se vidi da primjena rezolucije nikada ne može blokirati nijedan čvor na takvim putovima. Kad označi sve ostale čvorove, algoritam rezolucije će stati, te ćemo znati da forma nije proturječna.
+
+Takvo stablo, tzv.\ semantičko stablo, pruža dobar uvid i u ideju dokaza teorema kompaktnosti za logiku sudova: čak i ako je stablo beskonačno u visinu, svejedno će svaka staza od korijena prije ili kasnije biti blokirana, ili će postojati beskonačni put od korijena prema dolje, što će generirati interpretaciju.

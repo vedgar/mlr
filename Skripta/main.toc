@@ -13,3 +13,4 @@
 \contentsline {section}{\numberline {3.1}SAT problem}{19}
 \contentsline {section}{\numberline {3.2}Jednostavni slu\IeC {\v c}ajevi i DPLL algoritam}{20}
 \contentsline {section}{\numberline {3.3}Rezolucija}{22}
+\contentsline {section}{\numberline {3.4}Potpunost algoritma rezolucije}{24}
