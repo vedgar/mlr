@@ -81,11 +81,12 @@ Za svaki $p_i\in A_{\vec x}$ po definiciji $A_{\vec x}$ je $I(p_i)=x_i=0$, dok j
 Što je s valjanim formulama? Vidjeli smo u zadatku~\ref{zad:singnf} da je prazna klauzalna forma valjana, i trivijalno je savršena. Ipak, to nije savršena klauzalna forma \emph{za} bilo koju valjanu formulu $F$, jer je $Var(\emptyset)=\emptyset\not=Var(F)$. Štoviše, imamo sljedeći teorem.
 
 \begin{teorem}
-Neka je $F$ valjana formula. Tada ne postoji savršena klauzalna forma za $F$.
+Neka je $F$ valjana formula. Tada postoji savršena klauzalna forma za $F$ ako i samo ako je $Var(F)=\emptyset$.
 \end{teorem}
 
 \begin{proof}
-Pretpostavimo da je $K$ savršena klauzalna forma za $F$. Kako mora biti $K\Leftrightarrow F$, vidimo da i $K$ mora biti valjana. No budući da je $Var(F)\not=\emptyset=Var(\emptyset)$, $K$ ne smije biti prazna. Neka je $A\leftarrow B$ neka klauzula u $K$. Kako je $K$ savršena, $A\cap B=\emptyset$. Sada po zadatku~\ref{zad:singnf} slijedi da postoji interpretacija pod kojom je $A\leftarrow B$ lažna, pa je pod tom interpretacijom i $K$ lažna, što je kontradikcija s njenom valjanošću.
+U jednom smjeru, ako $F$ nema atoma (listovi su logičke konstante), $\emptyset$ je jedna savršena klauzalna forma za $F$. U drugom smjeru,
+pretpostavimo da je $K$ savršena klauzalna forma za $F$ te da $F$ sadrži bar jedan atom. Kako mora biti $K\Leftrightarrow F$, vidimo da i $K$ mora biti valjana. No budući da je $Var(F)\not=\emptyset=Var(\emptyset)$, $K$ ne smije biti prazna. Neka je $A\leftarrow B$ neka klauzula u $K$. Kako je $K$ savršena, $A\cap B=\emptyset$. Sada po zadatku~\ref{zad:singnf} slijedi da postoji interpretacija pod kojom je $A\leftarrow B$ lažna, pa je pod tom interpretacijom i $K$ lažna, što je kontradikcija s njenom valjanošću.
 \end{proof}
 
 \section{Konjunktivna normalna forma}
